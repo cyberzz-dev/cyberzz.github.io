@@ -7,7 +7,8 @@
 这样存在一个问题：主机太多，怕依赖包影响其他程序。
 研究了下，可以使用 pyinstaller打包依赖，省去很多麻烦。
 1 2 3 4 5 pyinstaller --onefile log_archive.py \ --hiddenimport=gssapi.raw.cython_converters \ --collect-submodules gssapi.raw \ --add-data /root/example.conf:. \ --add-data /root/example.key:. 还把相关的配置文件一起打包。
-实际原理就是：pyinstaller生成了一个最小的python环境，压缩成一个可执行文件。执行文件时解压到 /tmp下的一个随机目录进行执行，执行完自动删除。'>
+实际原理：pyinstaller生成了一个最小的python环境，压缩成一个可执行文件。执行文件时，自解压到 /tmp下的一个随机目录进行执行，执行完自动删除。
+自解压，忽然联想到以前研究的一个脚本 makeself.sh 在github上。'>
 <title>关于日志归档程序发布pyinstaller</title>
 
 <link rel='canonical' href='https://cyberzz.dev/p/log_archive_pytinstaller/'>
@@ -19,7 +20,8 @@
 这样存在一个问题：主机太多，怕依赖包影响其他程序。
 研究了下，可以使用 pyinstaller打包依赖，省去很多麻烦。
 1 2 3 4 5 pyinstaller --onefile log_archive.py \ --hiddenimport=gssapi.raw.cython_converters \ --collect-submodules gssapi.raw \ --add-data /root/example.conf:. \ --add-data /root/example.key:. 还把相关的配置文件一起打包。
-实际原理就是：pyinstaller生成了一个最小的python环境，压缩成一个可执行文件。执行文件时解压到 /tmp下的一个随机目录进行执行，执行完自动删除。'>
+实际原理：pyinstaller生成了一个最小的python环境，压缩成一个可执行文件。执行文件时，自解压到 /tmp下的一个随机目录进行执行，执行完自动删除。
+自解压，忽然联想到以前研究的一个脚本 makeself.sh 在github上。'>
 <meta property='og:url' content='https://cyberzz.dev/p/log_archive_pytinstaller/'>
 <meta property='og:site_name' content='Cyberzz&#39;s Blog Site'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2023-11-29T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2023-11-29T00:00:00&#43;00:00'/>
@@ -30,7 +32,8 @@
 这样存在一个问题：主机太多，怕依赖包影响其他程序。
 研究了下，可以使用 pyinstaller打包依赖，省去很多麻烦。
 1 2 3 4 5 pyinstaller --onefile log_archive.py \ --hiddenimport=gssapi.raw.cython_converters \ --collect-submodules gssapi.raw \ --add-data /root/example.conf:. \ --add-data /root/example.key:. 还把相关的配置文件一起打包。
-实际原理就是：pyinstaller生成了一个最小的python环境，压缩成一个可执行文件。执行文件时解压到 /tmp下的一个随机目录进行执行，执行完自动删除。">
+实际原理：pyinstaller生成了一个最小的python环境，压缩成一个可执行文件。执行文件时，自解压到 /tmp下的一个随机目录进行执行，执行完自动删除。
+自解压，忽然联想到以前研究的一个脚本 makeself.sh 在github上。">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-8XMXD5ZSFE"></script>
 <script>
 var doNotTrack = false;
@@ -377,7 +380,8 @@ if (!doNotTrack) {
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>还把相关的配置文件一起打包。</p>
-<p>实际原理就是：pyinstaller生成了一个最小的python环境，压缩成一个可执行文件。执行文件时解压到 /tmp下的一个随机目录进行执行，执行完自动删除。</p>
+<p>实际原理：pyinstaller生成了一个最小的python环境，压缩成一个可执行文件。执行文件时，自解压到 /tmp下的一个随机目录进行执行，执行完自动删除。</p>
+<p>自解压，忽然联想到以前研究的一个脚本 makeself.sh 在github上。</p>
 
 </section>
 

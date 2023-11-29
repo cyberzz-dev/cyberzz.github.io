@@ -242,7 +242,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;还把相关的配置文件一起打包。&lt;/p&gt;
-&lt;p&gt;实际原理就是：pyinstaller生成了一个最小的python环境，压缩成一个可执行文件。执行文件时解压到 /tmp下的一个随机目录进行执行，执行完自动删除。&lt;/p&gt;
+&lt;p&gt;实际原理：pyinstaller生成了一个最小的python环境，压缩成一个可执行文件。执行文件时，自解压到 /tmp下的一个随机目录进行执行，执行完自动删除。&lt;/p&gt;
+&lt;p&gt;自解压，忽然联想到以前研究的一个脚本 makeself.sh 在github上。&lt;/p&gt;
 </description>
         </item>
         <item>
