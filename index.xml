@@ -12,7 +12,15 @@
         <pubDate>Wed, 29 Nov 2023 00:00:00 +0000</pubDate>
         
         <guid>https://cyberzz.dev/post/log_archive_pytinstaller/</guid>
-        <description></description>
+        <description>&lt;p&gt;最近用python3写了一个日志归档程序。&lt;/p&gt;
+&lt;p&gt;主要功能：检测指定目录文件、压缩前一天的文件、上传到远端hdfs&lt;/p&gt;
+&lt;p&gt;由于主机多，而且py脚本有些特殊的hdfs依赖，导致执行脚本之前，必须初始化主机的依赖包。&lt;/p&gt;
+&lt;p&gt;这样存在一个问题：主机太多，怕依赖包影响其他程序。&lt;/p&gt;
+&lt;p&gt;研究了下，可以使用 pyinstaller打包依赖，省去很多麻烦。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;pyinstaller --onefile  log_archive.py  --hiddenimport&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;gssapi.raw.cython_converters  --collect-submodules gssapi.raw --add-data /root/example.conf:.    --add-data /root/example.key:.
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;还把相关的配置文件一起打包。&lt;/p&gt;
+&lt;p&gt;实际原理就是：pyinstaller生成了一个最小的python环境，压缩成一个可执行文件。执行文件时解压到 /tmp下的一个随机目录进行执行，执行完自动删除。&lt;/p&gt;
+</description>
         </item>
         <item>
         <title>About</title>

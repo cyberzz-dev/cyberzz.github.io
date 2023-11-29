@@ -273,7 +273,7 @@ if (!doNotTrack) {
 
 
                 <time class="article-time--reading">
-                    0 minute read
+                    1 minute read
                 </time>
             </div>
         
@@ -288,7 +288,15 @@ if (!doNotTrack) {
     <section class="article-content">
     
     
-    
+    <p>最近用python3写了一个日志归档程序。</p>
+<p>主要功能：检测指定目录文件、压缩前一天的文件、上传到远端hdfs</p>
+<p>由于主机多，而且py脚本有些特殊的hdfs依赖，导致执行脚本之前，必须初始化主机的依赖包。</p>
+<p>这样存在一个问题：主机太多，怕依赖包影响其他程序。</p>
+<p>研究了下，可以使用 pyinstaller打包依赖，省去很多麻烦。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>pyinstaller --onefile  log_archive.py  --hiddenimport<span style="color:#f92672">=</span>gssapi.raw.cython_converters  --collect-submodules gssapi.raw --add-data /root/example.conf:.    --add-data /root/example.key:.
+</span></span></code></pre></div><p>还把相关的配置文件一起打包。</p>
+<p>实际原理就是：pyinstaller生成了一个最小的python环境，压缩成一个可执行文件。执行文件时解压到 /tmp下的一个随机目录进行执行，执行完自动删除。</p>
+
 </section>
 
 
