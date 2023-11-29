@@ -6,7 +6,7 @@
 
 <link rel='canonical' href='https://cyberzz.dev/post/log_archive_pytinstaller/'>
 
-<link rel="stylesheet" href="/scss/style.min.24ef1cc321916467896e8c70c10c0ad7b98c2a8df14298032fb637216e397f50.css"><meta property='og:title' content='日志归档'>
+<link rel="stylesheet" href="/scss/style.min.d2452ad0c173a3dab60994107f0f193d8687c7e1ed5fa67e0d7c4787cdd8de64.css"><meta property='og:title' content='日志归档'>
 <meta property='og:description' content='关于日志归档的实施'>
 <meta property='og:url' content='https://cyberzz.dev/post/log_archive_pytinstaller/'>
 <meta property='og:site_name' content='cyberzz.dev'>
@@ -58,23 +58,12 @@ if (!doNotTrack) {
     </button>
 
     <header>
-        
-            
-            <figure class="site-avatar">
+        <figure class="site-avatar">
                 <a href="/">
-                
-                    
-                    
-                    
-                        
-                        <img src="/img/avatar_huda2458f72ce188392d75c5d51cd8e24e_373_300x0_resize_box_3.png" width="300"
-                            height="300" class="site-logo" loading="lazy" alt="Avatar">
-                    
-                
+                    <img src="/img/avatar_huda2458f72ce188392d75c5d51cd8e24e_373_300x0_resize_box_3.png" width="300" height="300" class="site-logo" loading="lazy" alt="Avatar">
                 </a>
                 
             </figure>
-            
         
         
         <div class="site-meta">
@@ -281,12 +270,27 @@ if (!doNotTrack) {
 <p>由于主机多，而且py脚本有些特殊的hdfs依赖，导致执行脚本之前，必须初始化主机的依赖包。</p>
 <p>这样存在一个问题：主机太多，怕依赖包影响其他程序。</p>
 <p>研究了下，可以使用 pyinstaller打包依赖，省去很多麻烦。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>pyinstaller --onefile  log_archive.py <span style="color:#ae81ff">\
+<div class="codeblock">
+    <header>
+        <span class="codeblock-lang">shell</span>
+        <button 
+            class="codeblock-copy"
+            data-id="codeblock-id-0"
+            data-copied-text="Copied!"
+        >
+            Copy
+        </button>
+    </header>
+    <code id="codeblock-id-0" style="display:none;">pyinstaller --onefile  log_archive.py \
+--hiddenimport=gssapi.raw.cython_converters \
+--collect-submodules gssapi.raw \ 
+--add-data /root/example.conf:.  \
+--add-data /root/example.key:.</code><div class=""><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>pyinstaller --onefile  log_archive.py <span style="color:#ae81ff">\
 </span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>--hiddenimport<span style="color:#f92672">=</span>gssapi.raw.cython_converters <span style="color:#ae81ff">\
 </span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>--collect-submodules gssapi.raw <span style="color:#ae81ff">\ </span>
 </span></span><span style="display:flex;"><span>--add-data /root/example.conf:.  <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>--add-data /root/example.key:.
-</span></span></code></pre></div><p>还把相关的配置文件一起打包。</p>
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>--add-data /root/example.key:.</span></span></code></pre></div></div></div>
+<p>还把相关的配置文件一起打包。</p>
 <p>实际原理就是：pyinstaller生成了一个最小的python环境，压缩成一个可执行文件。执行文件时解压到 /tmp下的一个随机目录进行执行，执行完自动删除。</p>
 
 </section>
@@ -319,96 +323,32 @@ if (!doNotTrack) {
     
     <section class="powerby">
         Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
-        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.21.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="4.0.0-alpha.2">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
     </section>
 </footer>
 
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@5.2.7/dist/photoswipe.css"
+    integrity="sha256-olf9rfn3AG8zR6lkPXkN3PZq63z8tElx7Ela6T4eklo=" crossorigin="anonymous">
+
+<script type="module">
+    import StackGallery from '\/ts\/gallery.js';
+    import PhotoSwipeLightbox from 'https://cdn.jsdelivr.net/npm/photoswipe@5.2.7/dist/photoswipe-lightbox.esm.min.js';
     
-<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    console.log(StackGallery)
+    StackGallery(document.querySelector('.article-content'));
 
-    
-    <div class="pswp__bg"></div>
-
-    
-    <div class="pswp__scroll-wrap">
-
-        
-        <div class="pswp__container">
-            <div class="pswp__item"></div>
-            <div class="pswp__item"></div>
-            <div class="pswp__item"></div>
-        </div>
-
-        
-        <div class="pswp__ui pswp__ui--hidden">
-
-            <div class="pswp__top-bar">
-
-                
-
-                <div class="pswp__counter"></div>
-
-                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
-
-                <button class="pswp__button pswp__button--share" title="Share"></button>
-
-                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
-
-                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
-
-                
-                
-                <div class="pswp__preloader">
-                    <div class="pswp__preloader__icn">
-                        <div class="pswp__preloader__cut">
-                            <div class="pswp__preloader__donut"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-                <div class="pswp__share-tooltip"></div>
-            </div>
-
-            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
-            </button>
-
-            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
-            </button>
-
-            <div class="pswp__caption">
-                <div class="pswp__caption__center"></div>
-            </div>
-
-        </div>
-
-    </div>
-
-</div><script 
-                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
-                defer
-                >
-            </script><script 
-                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
-                defer
-                >
-            </script><link 
-                rel="stylesheet" 
-                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
-            ><link 
-                rel="stylesheet" 
-                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
-            >
+    const lightbox = new PhotoSwipeLightbox({
+        gallery: '.article-content',
+        children: '.gallery-image a',
+        pswpModule: () => import('https://cdn.jsdelivr.net/npm/photoswipe@5.2.7/dist/photoswipe.esm.min.js')
+    });
+    lightbox.init();
+</script>
 
             </main>
         </div>
-        <script 
-                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
-                
-                >
-            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+        <script type="text/javascript" src="/ts/main.js" defer></script>
 <script>
     (function () {
         const customFont = document.createElement('link');
