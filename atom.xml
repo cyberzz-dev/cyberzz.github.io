@@ -4,16 +4,11 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en-us">
     <title type="text">cyberzz.dev</title>
     <subtitle type="html">MemE is a powerful and highly customizable GoHugo theme for personal blogs.</subtitle>
-    <updated>2023-11-29T20:26:02&#43;08:00</updated>
+    <updated>2023-11-29T20:31:42&#43;08:00</updated>
     <id>https://cyberzz.dev/</id>
     <link rel="alternate" type="text/html" href="https://cyberzz.dev/" />
     <link rel="self" type="application/atom&#43;xml" href="https://cyberzz.dev/atom.xml" />
-    <author>
-            <name>reuixiy</name>
-            <uri>https://cyberzz.dev/</uri>
-            
-                <email>reuixiy@gmail.com</email>
-            </author>
+    
     
     <generator uri="https://gohugo.io/" version="0.120.4">Hugo</generator>
         <entry>
@@ -23,9 +18,7 @@
             <updated>2023-11-29T20:21:55&#43;08:00</updated>
             <published>2023-11-29T00:00:00&#43;00:00</published>
             <author>
-                    <name>reuixiy</name>
-                    <uri>https://io-oi.me/</uri>
-                    <email>reuixiy@gmail.com</email>
+                    <uri>https://cyberzz.dev/</uri>
                     </author>
             <summary type="html">关于日志归档的实施</summary>
             
@@ -87,9 +80,7 @@
             <updated>2023-11-29T19:15:53&#43;08:00</updated>
             <published>2023-09-09T00:00:00&#43;00:00</published>
             <author>
-                    <name>reuixiy</name>
-                    <uri>https://io-oi.me/</uri>
-                    <email>reuixiy@gmail.com</email>
+                    <uri>https://cyberzz.dev/</uri>
                     </author>
             <summary type="html">install k8s</summary>
             
