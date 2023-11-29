@@ -8,10 +8,10 @@
         <language>en-us</language>
         <lastBuildDate>Sat, 09 Sep 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://cyberzz.dev/categories/kubernetes/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Kubernetes</title>
-        <link>https://cyberzz.dev/post/test-chinese/</link>
+        <link>https://cyberzz.dev/post/k8s-install/</link>
         <pubDate>Sat, 09 Sep 2023 00:00:00 +0000</pubDate>
         
-        <guid>https://cyberzz.dev/post/test-chinese/</guid>
+        <guid>https://cyberzz.dev/post/k8s-install/</guid>
         <description>&lt;p&gt;Kubernetes&lt;/p&gt;
 &lt;p&gt;以下是Kubernetes的主要知识点，可以作为学习和使用Kubernetes的参考：&lt;/p&gt;
 &lt;ol&gt;
