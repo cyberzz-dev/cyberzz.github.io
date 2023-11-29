@@ -2,11 +2,12 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://cyberzz.dev/zh-cn/</loc>
+    <loc>https://cyberzz.dev/</loc>
+    <lastmod>2023-11-29T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://cyberzz.dev/"
+                href="https://cyberzz.dev/en/"
                 />
     <xhtml:link
                 rel="alternate"
@@ -16,14 +17,29 @@
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
-                href="https://cyberzz.dev/zh-cn/"
+                href="https://cyberzz.dev/"
                 />
   </url><url>
-    <loc>https://cyberzz.dev/zh-cn/categories/</loc>
+    <loc>https://cyberzz.dev/post/</loc>
+    <lastmod>2023-11-29T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://cyberzz.dev/p/log_archive_pytinstaller/</loc>
+    <lastmod>2023-11-29T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://cyberzz.dev/p/k8s-install/</loc>
+    <lastmod>2023-09-09T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://cyberzz.dev/archives/</loc>
+    <lastmod>2019-05-28T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://cyberzz.dev/page/</loc>
+    <lastmod>2019-05-28T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://cyberzz.dev/categories/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://cyberzz.dev/categories/"
+                href="https://cyberzz.dev/en/categories/"
                 />
     <xhtml:link
                 rel="alternate"
@@ -33,26 +49,18 @@
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
-                href="https://cyberzz.dev/zh-cn/categories/"
+                href="https://cyberzz.dev/categories/"
                 />
   </url><url>
-    <loc>https://cyberzz.dev/zh-cn/page/</loc>
+    <loc>https://cyberzz.dev/links/</loc>
+  </url><url>
+    <loc>https://cyberzz.dev/search/</loc>
+  </url><url>
+    <loc>https://cyberzz.dev/tags/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://cyberzz.dev/page/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh-cn"
-                href="https://cyberzz.dev/zh-cn/page/"
-                />
-  </url><url>
-    <loc>https://cyberzz.dev/zh-cn/tags/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://cyberzz.dev/tags/"
+                href="https://cyberzz.dev/en/tags/"
                 />
     <xhtml:link
                 rel="alternate"
@@ -62,19 +70,9 @@
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
-                href="https://cyberzz.dev/zh-cn/tags/"
+                href="https://cyberzz.dev/tags/"
                 />
   </url><url>
-    <loc>https://cyberzz.dev/zh-cn/%E5%85%B3%E4%BA%8E/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://cyberzz.dev/about/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh-cn"
-                href="https://cyberzz.dev/zh-cn/%E5%85%B3%E4%BA%8E/"
-                />
+    <loc>https://cyberzz.dev/%E5%85%B3%E4%BA%8E/</loc>
   </url>
 </urlset>
