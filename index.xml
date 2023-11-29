@@ -6,7 +6,15 @@
         <description>Recent content on cyberzz.dev</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Tue, 28 Nov 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://cyberzz.dev/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 29 Nov 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://cyberzz.dev/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>日志归档</title>
+        <link>https://cyberzz.dev/post/log_archive_pytinstaller/</link>
+        <pubDate>Wed, 29 Nov 2023 00:00:00 +0000</pubDate>
+        
+        <guid>https://cyberzz.dev/post/log_archive_pytinstaller/</guid>
+        <description></description>
+        </item>
+        <item>
         <title>About</title>
         <link>https://cyberzz.dev/page/about/</link>
         <pubDate>Tue, 28 Nov 2023 00:00:00 +0000</pubDate>
