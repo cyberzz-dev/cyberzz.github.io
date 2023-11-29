@@ -1,18 +1,39 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='install k8s'>
-<title>Kubernetes</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Kubernetes
+以下是Kubernetes的主要知识点，可以作为学习和使用Kubernetes的参考：
+容器技术基础：Docker，Pod Kubernetes的基本概念：Node，Pod，Deployment，Service，ConfigMap，Secret，Ingress，Namespace，Label Kubernetes的核心组件：API Server，etcd，kube-scheduler，kube-controller-manager，kubelet，kube-proxy Kubernetes的对象模型：Kubernetes API 对象，Kubernetes API 的版本 Kubernetes的部署方式：单节点，多节点，云平台 Kubernetes的资源管理：CPU，内存，存储，网络 Kubernetes的服务发现和负载均衡：Service，Endpoint，Ingress，LoadBalancer Kubernetes的存储管理：PersistentVolume，PersistentVolumeClaim，StorageClass Kubernetes的网络管理：CNI，网络策略 Kubernetes的自动化：自动伸缩，自动扩容，自动升级 Kubernetes的扩展：CRD，Operator Kubernetes的安全：TLS，RBAC，Pod Security Policy，Secrets Encryption Kubernetes的调试和故障排除：kubectl 命令，事件，日志，debug container Kubernetes的监控：Heapster，Prometheus，Grafana Kubernetes的CI/CD：Jenkins，GitLab，Spinnaker 以上是Kubernetes的主要知识点，Kubernetes是一个庞大而复杂的系统，需要不断的学习和实践才能掌握。建议按照学习步骤逐一深入学习。
+1. 准备 https://www.cnblogs.com/bamboo-green/p/17128474.html
+service monitor 无法发现 https://www.kococ.cn/20211124/cid=721.html
+https://www.lvbibir.cn/posts/tech/kubernetes-prometheus-3-servicemonitor-podmonitor/
+1.1 系统配置 修改hosts 在安装之前，需要先做好如下准备。3台CentOS 7.9主机如下：
+1 2 3 4 5 6 7 [root@master ~]# cat /etc/hosts 127.0.0.1 localhost localhost.localdomain localhost4 localhost4.localdomain4 ::1 localhost localhost.localdomain localhost6 localhost6.localdomain6 192.168.10.20 master 192.168.10.21 node01 192.168.10.22 node02 192.168.10.23 node03 在各个主机上完成下面的系统配置。'>
+<title>Kubernetes 安装详情</title>
 
 <link rel='canonical' href='https://cyberzz.dev/p/k8s-install/'>
 
-<link rel="stylesheet" href="/scss/style.min.24ef1cc321916467896e8c70c10c0ad7b98c2a8df14298032fb637216e397f50.css"><meta property='og:title' content='Kubernetes'>
-<meta property='og:description' content='install k8s'>
+<link rel="stylesheet" href="/scss/style.min.24ef1cc321916467896e8c70c10c0ad7b98c2a8df14298032fb637216e397f50.css"><meta property='og:title' content='Kubernetes 安装详情'>
+<meta property='og:description' content='Kubernetes
+以下是Kubernetes的主要知识点，可以作为学习和使用Kubernetes的参考：
+容器技术基础：Docker，Pod Kubernetes的基本概念：Node，Pod，Deployment，Service，ConfigMap，Secret，Ingress，Namespace，Label Kubernetes的核心组件：API Server，etcd，kube-scheduler，kube-controller-manager，kubelet，kube-proxy Kubernetes的对象模型：Kubernetes API 对象，Kubernetes API 的版本 Kubernetes的部署方式：单节点，多节点，云平台 Kubernetes的资源管理：CPU，内存，存储，网络 Kubernetes的服务发现和负载均衡：Service，Endpoint，Ingress，LoadBalancer Kubernetes的存储管理：PersistentVolume，PersistentVolumeClaim，StorageClass Kubernetes的网络管理：CNI，网络策略 Kubernetes的自动化：自动伸缩，自动扩容，自动升级 Kubernetes的扩展：CRD，Operator Kubernetes的安全：TLS，RBAC，Pod Security Policy，Secrets Encryption Kubernetes的调试和故障排除：kubectl 命令，事件，日志，debug container Kubernetes的监控：Heapster，Prometheus，Grafana Kubernetes的CI/CD：Jenkins，GitLab，Spinnaker 以上是Kubernetes的主要知识点，Kubernetes是一个庞大而复杂的系统，需要不断的学习和实践才能掌握。建议按照学习步骤逐一深入学习。
+1. 准备 https://www.cnblogs.com/bamboo-green/p/17128474.html
+service monitor 无法发现 https://www.kococ.cn/20211124/cid=721.html
+https://www.lvbibir.cn/posts/tech/kubernetes-prometheus-3-servicemonitor-podmonitor/
+1.1 系统配置 修改hosts 在安装之前，需要先做好如下准备。3台CentOS 7.9主机如下：
+1 2 3 4 5 6 7 [root@master ~]# cat /etc/hosts 127.0.0.1 localhost localhost.localdomain localhost4 localhost4.localdomain4 ::1 localhost localhost.localdomain localhost6 localhost6.localdomain6 192.168.10.20 master 192.168.10.21 node01 192.168.10.22 node02 192.168.10.23 node03 在各个主机上完成下面的系统配置。'>
 <meta property='og:url' content='https://cyberzz.dev/p/k8s-install/'>
 <meta property='og:site_name' content='Cyberzz&#39;s Blog Site'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2023-09-09T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2023-09-09T00:00:00&#43;00:00'/>
-<meta name="twitter:title" content="Kubernetes">
-<meta name="twitter:description" content="install k8s">
+<meta name="twitter:title" content="Kubernetes 安装详情">
+<meta name="twitter:description" content="Kubernetes
+以下是Kubernetes的主要知识点，可以作为学习和使用Kubernetes的参考：
+容器技术基础：Docker，Pod Kubernetes的基本概念：Node，Pod，Deployment，Service，ConfigMap，Secret，Ingress，Namespace，Label Kubernetes的核心组件：API Server，etcd，kube-scheduler，kube-controller-manager，kubelet，kube-proxy Kubernetes的对象模型：Kubernetes API 对象，Kubernetes API 的版本 Kubernetes的部署方式：单节点，多节点，云平台 Kubernetes的资源管理：CPU，内存，存储，网络 Kubernetes的服务发现和负载均衡：Service，Endpoint，Ingress，LoadBalancer Kubernetes的存储管理：PersistentVolume，PersistentVolumeClaim，StorageClass Kubernetes的网络管理：CNI，网络策略 Kubernetes的自动化：自动伸缩，自动扩容，自动升级 Kubernetes的扩展：CRD，Operator Kubernetes的安全：TLS，RBAC，Pod Security Policy，Secrets Encryption Kubernetes的调试和故障排除：kubectl 命令，事件，日志，debug container Kubernetes的监控：Heapster，Prometheus，Grafana Kubernetes的CI/CD：Jenkins，GitLab，Spinnaker 以上是Kubernetes的主要知识点，Kubernetes是一个庞大而复杂的系统，需要不断的学习和实践才能掌握。建议按照学习步骤逐一深入学习。
+1. 准备 https://www.cnblogs.com/bamboo-green/p/17128474.html
+service monitor 无法发现 https://www.kococ.cn/20211124/cid=721.html
+https://www.lvbibir.cn/posts/tech/kubernetes-prometheus-3-servicemonitor-podmonitor/
+1.1 系统配置 修改hosts 在安装之前，需要先做好如下准备。3台CentOS 7.9主机如下：
+1 2 3 4 5 6 7 [root@master ~]# cat /etc/hosts 127.0.0.1 localhost localhost.localdomain localhost4 localhost4.localdomain4 ::1 localhost localhost.localdomain localhost6 localhost6.localdomain6 192.168.10.20 master 192.168.10.21 node01 192.168.10.22 node02 192.168.10.23 node03 在各个主机上完成下面的系统配置。">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-8XMXD5ZSFE"></script>
 <script>
 var doNotTrack = false;
@@ -476,13 +497,9 @@ if (!doNotTrack) {
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/p/k8s-install/">Kubernetes</a>
+            <a href="/p/k8s-install/">Kubernetes 安装详情</a>
         </h2>
     
-        
-        <h3 class="article-subtitle">
-            install k8s
-        </h3>
         
     </div>
 
