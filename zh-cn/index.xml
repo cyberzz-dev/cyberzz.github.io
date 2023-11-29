@@ -6,13 +6,16 @@
         <description>Recent content on Cyberzz&#39;s Blog Site</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <copyright>Cyberzz Blog</copyright><atom:link href="https://cyberzz.dev/zh-cn/index.xml" rel="self" type="application/rss+xml" /><item>
+        <copyright>Cyberzz.dev Blog</copyright><atom:link href="https://cyberzz.dev/zh-cn/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>关于</title>
         <link>https://cyberzz.dev/zh-cn/%E5%85%B3%E4%BA%8E/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
         <guid>https://cyberzz.dev/zh-cn/%E5%85%B3%E4%BA%8E/</guid>
-        <description>&lt;p&gt;This is a test page for i18n support.&lt;/p&gt;
+        <description>&lt;p&gt;A Linux Admin &amp;amp; SRE&lt;/p&gt;
+&lt;p&gt;Interested in Linux Network Kubernetes&lt;/p&gt;
+&lt;p&gt;This is my blog. Thanks&lt;/p&gt;
+&lt;p&gt;My email : &lt;a class=&#34;link&#34; href=&#34;mailto:zh1599512@gmail.com&#34; &gt;zh1599512@gmail.com&lt;/a&gt;&lt;/p&gt;
 </description>
         </item>
         
