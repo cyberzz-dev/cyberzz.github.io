@@ -8,7 +8,214 @@
         <language>en</language>
         <copyright>Cyberzz Blog</copyright>
         <lastBuildDate>Wed, 29 Nov 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://cyberzz.dev/post/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>关于日志归档的实施</title>
+        <title>kafka acls的一些设置</title>
+        <link>https://cyberzz.dev/p/kafka_acls/</link>
+        <pubDate>Wed, 29 Nov 2023 00:00:00 +0000</pubDate>
+        
+        <guid>https://cyberzz.dev/p/kafka_acls/</guid>
+        <description>&lt;p&gt;根据confluent的介绍&lt;/p&gt;
+&lt;h2 id=&#34;资源类型分为三种&#34;&gt;资源类型分为三种：&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;cluster&lt;/li&gt;
+&lt;li&gt;topic&lt;/li&gt;
+&lt;li&gt;group&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;集群资源操作-cluster-resource-operations&#34;&gt;集群资源操作 Cluster resource operations&lt;/h2&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;Operation&lt;/th&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;Resource&lt;/th&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;APIs allowed&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Alter&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Cluster&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;AlterReplicaLogDirs, CreateAcls, DeleteAcls&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;AlterConfigs&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Cluster&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;AlterConfigs&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;ClusterAction&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Cluster&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Fetch (for replication only), LeaderAndIsr, OffsetForLeaderEpoch, StopReplica, UpdateMetadata, ControlledShutdown, WriteTxnMarkers&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Create&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Cluster&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;CreateTopics, Metadata&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Describe&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Cluster&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;DescribeAcls, DescribeLogDirs, ListGroups&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;DescribeConfigs&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Cluster&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;DescribeConfigs&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id=&#34;topic资源操作-topic-resource-type-operations&#34;&gt;topic资源操作 Topic resource type operations&lt;/h2&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;Operation&lt;/th&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;Resource&lt;/th&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;APIs allowed&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Alter&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Topic&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;CreatePartitions&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;AlterConfigs&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Topic&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;AlterConfigs&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Create&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Topic&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;CreateTopics, Metadata&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Delete&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Topic&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;DeleteRecords, DeleteTopics&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Describe&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Topic&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;ListOffsets, Metadata, OffsetFetch, OffsetForLeaderEpoch&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;DescribeConfigs&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Topic&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;DescribeConfigs&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Read&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Topic&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Fetch, OffsetCommit, TxnOffsetCommit&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Write&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Topic&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Produce, AddPartitionsToTxn&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id=&#34;组资源操作-group-resource-type-operations&#34;&gt;组资源操作 Group resource type operations&lt;/h2&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;Operation&lt;/th&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;Resource&lt;/th&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;APIs allowed&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Delete&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Group&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;DeleteGroups&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Describe&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Group&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;DescribeGroup, FindCoordinator, ListGroups&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Read&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;Group&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;AddOffsetsToTxn, Heartbeat, JoinGroup, LeaveGroup, OffsetCommit, OffsetFetch, SyncGroup, TxnOffsetCommit&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id=&#34;operation-操作分以下几类&#34;&gt;operation 操作分以下几类：&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Alter&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;AlterConfigs&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Describe&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;DescribeConfigs&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Read&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Write&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Create&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Delete&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;ClusterAction&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;IdempotentWrite&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;All&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;resource-pattern-type-类型分为以下&#34;&gt;resource-pattern-type 类型分为以下：&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;ANY&lt;/li&gt;
+&lt;li&gt;MATCH&lt;/li&gt;
+&lt;li&gt;LITERAL&lt;/li&gt;
+&lt;li&gt;PREFIXED&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;完全匹配  LITERAL，Kafka 将尝试将完整资源名称（例如主题或消费者组）与 ACL 中指定的资源进行匹配。&lt;/p&gt;
+&lt;p&gt;前缀匹配 PREFIXED，Kafka 会尝试将资源名称的前缀与 ACL 中指定的资源进行匹配&lt;/p&gt;
+&lt;p&gt;在某些情况下，您可能需要使用星号 ( &lt;code&gt;*&lt;/code&gt;) 来指定所有资源。&lt;/p&gt;
+&lt;p&gt;设置Alice对所有topic 和消费组的 的所有权限，如下：&lt;/p&gt;
+&lt;p&gt;注：*必须加单引号&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;kafka-acls --bootstrap-server localhost:9092 &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;--command-config adminclient-configs.conf &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;--add &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;--allow-principal User:Alice &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;--operation All &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;--topic &lt;span class=&#34;s1&#34;&gt;&amp;#39;*&amp;#39;&lt;/span&gt; &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;--group &lt;span class=&#34;s1&#34;&gt;&amp;#39;*&amp;#39;&lt;/span&gt;  &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;--cluster &lt;span class=&#34;s1&#34;&gt;&amp;#39;*&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;注意点，当 resource type 匹配为*时，可以不指定 resource-pattern-type 默认为(LITERAL)&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>关于日志归档程序发布pyinstaller</title>
         <link>https://cyberzz.dev/p/log_archive_pytinstaller/</link>
         <pubDate>Wed, 29 Nov 2023 00:00:00 +0000</pubDate>
         
