@@ -1,0 +1,1256 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='https
+1 前言 https作为已经广泛使用的
+2 算法Algorithm 2.1 数字签名算法Digital Signature Algorithm (DSA) 该算法使用由公钥和私钥组成的密钥对。私钥用于生成消息的数字签名，并且可以通过使用签名者的相应公钥来验证这种签名。数字签名提供信息鉴定（接收者可以验证消息的来源），完整性（接收方可以验证消息自签名以来未被修改）和不可否认性（发送方不能错误地声称它们没有签署消息）
+RSA-SHA-1
+RSA-SHA-256
+RSA-SHA-3
+ECC-DSA
+Ed-DSA
+​ 2.2 非对称加密算法 Asymmetric algorithms 在公钥加密法中使用的特别技术是不对称密钥算法，这个算法中用来加密信息的密钥与解密信息的密钥不是同一个。每个用户都有一对加密密钥 — 一个公钥和一个私钥。私钥是秘密保存，而公钥则会广泛传播。信息是使由接收方到公钥加密，且该信息只能使用对应的私钥解密。
+常用的非对称加密算法有 RSA，非对称加密算法虽然可以解决密钥配送的问题，但是它的加密速度比较慢，并且无法抵御中间人攻击。
+2.3 对称加密算法 Symmetric Algorithm 2.4 密钥交换算法 Diffie-Hellman Key Exchange Diffie-Hellman 密钥交换（D-H）是可让事先彼此不了解的双方通过不稳定的通讯频道联合建立共享保密密钥的加密协议。
+2.5 椭圆曲线 ECDH Elliptic Curve Diffie-Hellman Key Exchange https://www.youtube.com/watch?v=yDXiDOJgxmg
+3 证书文件 证书是基于道德、公信的基础，对CA/Root颁发机构的信任。
+3.1 X.509 X.509是密码学里公钥证书的格式标准。
+证书组成结构标准用ASN.1（一种标准的语言）来进行描述。
+3.2 Private Key And Public Key 由工具生成的密钥对 使用RSA算法(非对称加密算法)。
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 -----BEGIN PRIVATE KEY----- MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDfywgJ6EIKwt81 rI9r08yiq&#43;f4Umw9mNuPS3HMopyV6KJYudqLOsICbJt6GyI6NdFAoitZ6pcUnlEr Hw54At8rKNZffcCR9Svjka&#43;u6gF1we8JMSE0I/GoImWZXhJ3gy7KJ&#43;rD84rFwbta mJE6faFbjFeU4&#43;f3sLrf3K71acQueGsrBZKHc7Es6N6MK8GEbw1OMLFubdp2vosA PUpCk6oUfnH0AvUX3OP/OZV&#43;REv&#43;apS0ktCoCZciua/6612qblSWW/8GWAJqv17b jd2qenYnkVkhuLXMhpwDPAc8Y494yfyiWdrHJ99POdk7u8NsFaN7z/DGZGeq&#43;NEJ EZb5L7h1AgMBAAECggEAVH6rwlHW3YlGDVXhsKx/DswpATDdfURBYZDynnim9lKn OSiywu6kYZXv/eJQwfmfz&#43;9qvsA72qULsGRBaj5rVDhO&#43;C7ajkErGPjghAIGGxfl 0GqkRrNrgje6dHV4M3dsKxd3JBTHyHKk8ke4TYUxbwdF6glCg9pONEd2J2KPl5ta 2OfrrvFwOeix9QyUcT4mmTA2fKkuii8P8BPuARcVYLq5DBYt8WiLWey4vpaCoUc1 ZTcaKhCi/tjwMAsqchWIvrdChQOaphwTbZfPE/oAf9D&#43;ov4p1MM7nDMD08idlOJz TsSvSWh0zPzrwil7ipLRkX/fj7CCzwb2O4rtzPKC4QKBgQDycXNm0S6iXdQJBZGh 0acTigiSrrRYawI&#43;5gegwBEd25T7Wcb4i9P483DR5IB1EfpHD6hXpf&#43;kha9vrY5Z NT4h05WvQp/KtV21/C6kI5k4T25mpBsIY2b&#43;iyiOXlkaoxHqhBYDASBHbGjmGUmY hqI1IiFoRlY61NAC&#43;vfqC0OLPwKBgQDsTptPerT32QEDPJ98//n4CPLnaOeovwjr BmNeotHFqjg9VvPKztgJOwsy44TCEX/gl/Un92pm/WxsaDplE3ClGgL3p9iqfUc9 q9tpFDxShHFtRsYu/oyduSVEUogVWNKN7QS2G12beLC&#43;1b&#43;&#43;mCm5n8VdtsOTY&#43;v/ xb/b3B/TSwKBgQDkNjrE278kA2JmI6HUSr8Uu2gaeu00FXaFso4XmPQDwQBaIUYU C7s6qhzW1lq82HFYlrqF1rHvMg/T9fD6tA2KVdqeoP49F7/gYEOfKgs&#43;YDax02PG 35rBnEhOyyzg0AM7V55IsbSqxrdvcPo/4uupTDlaKGte8ZfkVk0rN/MajQKBgChh WlrfjhMYSvsBngNfPpjq9o8itwt38Y8v3UUrr4sGhmu88xYB&#43;JrDMyu0A1iiYua/ MM5ukgkdXyy7NtdU1hfwdPdbAERJ&#43;iWIu4qeQZycM0HIKU&#43;YgfDl1X9yVvzG29wS 145C6OELY7CImCZ6nA6zRae49ny2Q3rGkP2CBRI3AoGAU/6czO8x78qEk8dZQucH JDiq6OuksffsoRONZE9mEUmreAQr&#43;CW&#43;gWmzfYihq/2ubf7CA7DB3LEsLLlaxUWp QrBV7y65rTSQv1wDvJPcbXhT2XtG8rOY&#43;IKJSQuLxP8FSjCUCodvkQBt&#43;XUnJi9f ERco&#43;1Vln3uNjUrrgH&#43;ywFI= -----END PRIVATE KEY----- 3.'>
+<title>https 浅析</title>
+
+<link rel='canonical' href='https://cyberzz.dev/p/simple_https/'>
+
+<link rel="stylesheet" href="/scss/style.min.24ef1cc321916467896e8c70c10c0ad7b98c2a8df14298032fb637216e397f50.css"><meta property='og:title' content='https 浅析'>
+<meta property='og:description' content='https
+1 前言 https作为已经广泛使用的
+2 算法Algorithm 2.1 数字签名算法Digital Signature Algorithm (DSA) 该算法使用由公钥和私钥组成的密钥对。私钥用于生成消息的数字签名，并且可以通过使用签名者的相应公钥来验证这种签名。数字签名提供信息鉴定（接收者可以验证消息的来源），完整性（接收方可以验证消息自签名以来未被修改）和不可否认性（发送方不能错误地声称它们没有签署消息）
+RSA-SHA-1
+RSA-SHA-256
+RSA-SHA-3
+ECC-DSA
+Ed-DSA
+​ 2.2 非对称加密算法 Asymmetric algorithms 在公钥加密法中使用的特别技术是不对称密钥算法，这个算法中用来加密信息的密钥与解密信息的密钥不是同一个。每个用户都有一对加密密钥 — 一个公钥和一个私钥。私钥是秘密保存，而公钥则会广泛传播。信息是使由接收方到公钥加密，且该信息只能使用对应的私钥解密。
+常用的非对称加密算法有 RSA，非对称加密算法虽然可以解决密钥配送的问题，但是它的加密速度比较慢，并且无法抵御中间人攻击。
+2.3 对称加密算法 Symmetric Algorithm 2.4 密钥交换算法 Diffie-Hellman Key Exchange Diffie-Hellman 密钥交换（D-H）是可让事先彼此不了解的双方通过不稳定的通讯频道联合建立共享保密密钥的加密协议。
+2.5 椭圆曲线 ECDH Elliptic Curve Diffie-Hellman Key Exchange https://www.youtube.com/watch?v=yDXiDOJgxmg
+3 证书文件 证书是基于道德、公信的基础，对CA/Root颁发机构的信任。
+3.1 X.509 X.509是密码学里公钥证书的格式标准。
+证书组成结构标准用ASN.1（一种标准的语言）来进行描述。
+3.2 Private Key And Public Key 由工具生成的密钥对 使用RSA算法(非对称加密算法)。
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 -----BEGIN PRIVATE KEY----- MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDfywgJ6EIKwt81 rI9r08yiq&#43;f4Umw9mNuPS3HMopyV6KJYudqLOsICbJt6GyI6NdFAoitZ6pcUnlEr Hw54At8rKNZffcCR9Svjka&#43;u6gF1we8JMSE0I/GoImWZXhJ3gy7KJ&#43;rD84rFwbta mJE6faFbjFeU4&#43;f3sLrf3K71acQueGsrBZKHc7Es6N6MK8GEbw1OMLFubdp2vosA PUpCk6oUfnH0AvUX3OP/OZV&#43;REv&#43;apS0ktCoCZciua/6612qblSWW/8GWAJqv17b jd2qenYnkVkhuLXMhpwDPAc8Y494yfyiWdrHJ99POdk7u8NsFaN7z/DGZGeq&#43;NEJ EZb5L7h1AgMBAAECggEAVH6rwlHW3YlGDVXhsKx/DswpATDdfURBYZDynnim9lKn OSiywu6kYZXv/eJQwfmfz&#43;9qvsA72qULsGRBaj5rVDhO&#43;C7ajkErGPjghAIGGxfl 0GqkRrNrgje6dHV4M3dsKxd3JBTHyHKk8ke4TYUxbwdF6glCg9pONEd2J2KPl5ta 2OfrrvFwOeix9QyUcT4mmTA2fKkuii8P8BPuARcVYLq5DBYt8WiLWey4vpaCoUc1 ZTcaKhCi/tjwMAsqchWIvrdChQOaphwTbZfPE/oAf9D&#43;ov4p1MM7nDMD08idlOJz TsSvSWh0zPzrwil7ipLRkX/fj7CCzwb2O4rtzPKC4QKBgQDycXNm0S6iXdQJBZGh 0acTigiSrrRYawI&#43;5gegwBEd25T7Wcb4i9P483DR5IB1EfpHD6hXpf&#43;kha9vrY5Z NT4h05WvQp/KtV21/C6kI5k4T25mpBsIY2b&#43;iyiOXlkaoxHqhBYDASBHbGjmGUmY hqI1IiFoRlY61NAC&#43;vfqC0OLPwKBgQDsTptPerT32QEDPJ98//n4CPLnaOeovwjr BmNeotHFqjg9VvPKztgJOwsy44TCEX/gl/Un92pm/WxsaDplE3ClGgL3p9iqfUc9 q9tpFDxShHFtRsYu/oyduSVEUogVWNKN7QS2G12beLC&#43;1b&#43;&#43;mCm5n8VdtsOTY&#43;v/ xb/b3B/TSwKBgQDkNjrE278kA2JmI6HUSr8Uu2gaeu00FXaFso4XmPQDwQBaIUYU C7s6qhzW1lq82HFYlrqF1rHvMg/T9fD6tA2KVdqeoP49F7/gYEOfKgs&#43;YDax02PG 35rBnEhOyyzg0AM7V55IsbSqxrdvcPo/4uupTDlaKGte8ZfkVk0rN/MajQKBgChh WlrfjhMYSvsBngNfPpjq9o8itwt38Y8v3UUrr4sGhmu88xYB&#43;JrDMyu0A1iiYua/ MM5ukgkdXyy7NtdU1hfwdPdbAERJ&#43;iWIu4qeQZycM0HIKU&#43;YgfDl1X9yVvzG29wS 145C6OELY7CImCZ6nA6zRae49ny2Q3rGkP2CBRI3AoGAU/6czO8x78qEk8dZQucH JDiq6OuksffsoRONZE9mEUmreAQr&#43;CW&#43;gWmzfYihq/2ubf7CA7DB3LEsLLlaxUWp QrBV7y65rTSQv1wDvJPcbXhT2XtG8rOY&#43;IKJSQuLxP8FSjCUCodvkQBt&#43;XUnJi9f ERco&#43;1Vln3uNjUrrgH&#43;ywFI= -----END PRIVATE KEY----- 3.'>
+<meta property='og:url' content='https://cyberzz.dev/p/simple_https/'>
+<meta property='og:site_name' content='Cyberzz.dev&#39;s Blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2023-11-30T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2023-11-30T00:00:00&#43;00:00'/>
+<meta name="twitter:title" content="https 浅析">
+<meta name="twitter:description" content="https
+1 前言 https作为已经广泛使用的
+2 算法Algorithm 2.1 数字签名算法Digital Signature Algorithm (DSA) 该算法使用由公钥和私钥组成的密钥对。私钥用于生成消息的数字签名，并且可以通过使用签名者的相应公钥来验证这种签名。数字签名提供信息鉴定（接收者可以验证消息的来源），完整性（接收方可以验证消息自签名以来未被修改）和不可否认性（发送方不能错误地声称它们没有签署消息）
+RSA-SHA-1
+RSA-SHA-256
+RSA-SHA-3
+ECC-DSA
+Ed-DSA
+​ 2.2 非对称加密算法 Asymmetric algorithms 在公钥加密法中使用的特别技术是不对称密钥算法，这个算法中用来加密信息的密钥与解密信息的密钥不是同一个。每个用户都有一对加密密钥 — 一个公钥和一个私钥。私钥是秘密保存，而公钥则会广泛传播。信息是使由接收方到公钥加密，且该信息只能使用对应的私钥解密。
+常用的非对称加密算法有 RSA，非对称加密算法虽然可以解决密钥配送的问题，但是它的加密速度比较慢，并且无法抵御中间人攻击。
+2.3 对称加密算法 Symmetric Algorithm 2.4 密钥交换算法 Diffie-Hellman Key Exchange Diffie-Hellman 密钥交换（D-H）是可让事先彼此不了解的双方通过不稳定的通讯频道联合建立共享保密密钥的加密协议。
+2.5 椭圆曲线 ECDH Elliptic Curve Diffie-Hellman Key Exchange https://www.youtube.com/watch?v=yDXiDOJgxmg
+3 证书文件 证书是基于道德、公信的基础，对CA/Root颁发机构的信任。
+3.1 X.509 X.509是密码学里公钥证书的格式标准。
+证书组成结构标准用ASN.1（一种标准的语言）来进行描述。
+3.2 Private Key And Public Key 由工具生成的密钥对 使用RSA算法(非对称加密算法)。
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 -----BEGIN PRIVATE KEY----- MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDfywgJ6EIKwt81 rI9r08yiq&#43;f4Umw9mNuPS3HMopyV6KJYudqLOsICbJt6GyI6NdFAoitZ6pcUnlEr Hw54At8rKNZffcCR9Svjka&#43;u6gF1we8JMSE0I/GoImWZXhJ3gy7KJ&#43;rD84rFwbta mJE6faFbjFeU4&#43;f3sLrf3K71acQueGsrBZKHc7Es6N6MK8GEbw1OMLFubdp2vosA PUpCk6oUfnH0AvUX3OP/OZV&#43;REv&#43;apS0ktCoCZciua/6612qblSWW/8GWAJqv17b jd2qenYnkVkhuLXMhpwDPAc8Y494yfyiWdrHJ99POdk7u8NsFaN7z/DGZGeq&#43;NEJ EZb5L7h1AgMBAAECggEAVH6rwlHW3YlGDVXhsKx/DswpATDdfURBYZDynnim9lKn OSiywu6kYZXv/eJQwfmfz&#43;9qvsA72qULsGRBaj5rVDhO&#43;C7ajkErGPjghAIGGxfl 0GqkRrNrgje6dHV4M3dsKxd3JBTHyHKk8ke4TYUxbwdF6glCg9pONEd2J2KPl5ta 2OfrrvFwOeix9QyUcT4mmTA2fKkuii8P8BPuARcVYLq5DBYt8WiLWey4vpaCoUc1 ZTcaKhCi/tjwMAsqchWIvrdChQOaphwTbZfPE/oAf9D&#43;ov4p1MM7nDMD08idlOJz TsSvSWh0zPzrwil7ipLRkX/fj7CCzwb2O4rtzPKC4QKBgQDycXNm0S6iXdQJBZGh 0acTigiSrrRYawI&#43;5gegwBEd25T7Wcb4i9P483DR5IB1EfpHD6hXpf&#43;kha9vrY5Z NT4h05WvQp/KtV21/C6kI5k4T25mpBsIY2b&#43;iyiOXlkaoxHqhBYDASBHbGjmGUmY hqI1IiFoRlY61NAC&#43;vfqC0OLPwKBgQDsTptPerT32QEDPJ98//n4CPLnaOeovwjr BmNeotHFqjg9VvPKztgJOwsy44TCEX/gl/Un92pm/WxsaDplE3ClGgL3p9iqfUc9 q9tpFDxShHFtRsYu/oyduSVEUogVWNKN7QS2G12beLC&#43;1b&#43;&#43;mCm5n8VdtsOTY&#43;v/ xb/b3B/TSwKBgQDkNjrE278kA2JmI6HUSr8Uu2gaeu00FXaFso4XmPQDwQBaIUYU C7s6qhzW1lq82HFYlrqF1rHvMg/T9fD6tA2KVdqeoP49F7/gYEOfKgs&#43;YDax02PG 35rBnEhOyyzg0AM7V55IsbSqxrdvcPo/4uupTDlaKGte8ZfkVk0rN/MajQKBgChh WlrfjhMYSvsBngNfPpjq9o8itwt38Y8v3UUrr4sGhmu88xYB&#43;JrDMyu0A1iiYua/ MM5ukgkdXyy7NtdU1hfwdPdbAERJ&#43;iWIu4qeQZycM0HIKU&#43;YgfDl1X9yVvzG29wS 145C6OELY7CImCZ6nA6zRae49ny2Q3rGkP2CBRI3AoGAU/6czO8x78qEk8dZQucH JDiq6OuksffsoRONZE9mEUmreAQr&#43;CW&#43;gWmzfYihq/2ubf7CA7DB3LEsLLlaxUWp QrBV7y65rTSQv1wDvJPcbXhT2XtG8rOY&#43;IKJSQuLxP8FSjCUCodvkQBt&#43;XUnJi9f ERco&#43;1Vln3uNjUrrgH&#43;ywFI= -----END PRIVATE KEY----- 3.">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-8XMXD5ZSFE"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-8XMXD5ZSFE', { 'anonymize_ip': false });
+}
+</script>
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hua28405c9d768dacad140f7ab70983e38_301649_300x0_resize_box_3.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Cyberzz.dev&#39;s Blog</a></h1>
+            <h2 class="site-description">linux network kubernetes.</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/cyberzz-dev'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+                <li id="i18n-switch">  
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                    <select name="language" onchange="window.location.href = this.selectedOptions[0].value">
+                        
+                            <option value="https://cyberzz.dev/" selected>English</option>
+                        
+                            <option value="https://cyberzz.dev/zh-cn/" >中文</option>
+                        
+                            <option value="https://cyberzz.dev/ar/" >عربي</option>
+                        
+                    </select>
+                </li>
+            
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>Dark Mode</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#21----数字签名算法digital-signature-algorithm-dsa">2.1    数字签名算法Digital Signature Algorithm (DSA)</a></li>
+    <li><a href="#22----非对称加密算法-asymmetric-algorithms">2.2    非对称加密算法 Asymmetric algorithms</a></li>
+    <li><a href="#23----对称加密算法-symmetric-algorithm">2.3    对称加密算法 Symmetric Algorithm</a></li>
+    <li><a href="#24----密钥交换算法-diffie-hellman-key-exchange">2.4    密钥交换算法 Diffie-Hellman Key Exchange</a></li>
+    <li><a href="#25----椭圆曲线-ecdh-elliptic-curve-diffie-hellman-key-exchange">2.5    椭圆曲线 ECDH Elliptic Curve Diffie-Hellman Key Exchange</a></li>
+  </ol>
+
+  <ol>
+    <li><a href="#31----x509">3.1    X.509</a></li>
+    <li><a href="#32----private-key-and-public-key">3.2    Private Key And Public Key</a></li>
+    <li><a href="#33----csr-sertificate-signing-request-also-csr-or-certification-request">3.3    CSR Sertificate Signing Request (also CSR or certification request)</a></li>
+    <li><a href="#34----crt-signed-certificate">3.4    CRT Signed Certificate</a>
+      <ol>
+        <li><a href="#341--base64-certificate-example">3.4.1  Base64 Certificate Example:</a></li>
+        <li><a href="#342--证书内容">3.4.2  证书内容</a></li>
+      </ol>
+    </li>
+  </ol>
+
+  <ol>
+    <li><a href="#41----发展">4.1    发展</a></li>
+    <li><a href="#42----协议层-osi-level">4.2    协议层 OSI Level</a></li>
+    <li><a href="#43----https大概流程">4.3    HTTPS大概流程</a></li>
+    <li><a href="#44----为什么两种加密算法结合使用">4.4    为什么两种加密算法结合使用</a>
+      <ol>
+        <li><a href="#441--rsa缺点">4.4.1  RSA缺点</a></li>
+        <li><a href="#442--dh缺点">4.4.2  DH缺点</a></li>
+      </ol>
+    </li>
+    <li><a href="#45----证书签名与验证">4.5    证书签名与验证</a>
+      <ol>
+        <li><a href="#451--证书链">4.5.1  证书链</a></li>
+        <li><a href="#452--证书链验证">4.5.2  证书链验证</a></li>
+        <li><a href="#453--证书详解签名与验证">4.5.3  证书详解签名与验证</a></li>
+      </ol>
+    </li>
+    <li><a href="#46----tls-12-handshake">4.6    TLS 1.2 Handshake</a>
+      <ol>
+        <li><a href="#461--rsa-handshake">4.6.1  RSA Handshake</a></li>
+        <li><a href="#462--dh-handshake">4.6.2  DH Handshake</a></li>
+      </ol>
+    </li>
+    <li><a href="#47----tls-13-handshake">4.7    TLS 1.3 Handshake</a></li>
+  </ol>
+
+  <ol>
+    <li><a href="#51----背景">5.1    背景</a></li>
+    <li><a href="#52----https-为什么不行">5.2    HTTPS 为什么不行</a></li>
+    <li><a href="#53----sni-介绍">5.3    SNI 介绍</a></li>
+    <li><a href="#54----sni-的工作原理">5.4    SNI 的工作原理</a></li>
+    <li><a href="#55----sni问题">5.5    SNI问题</a></li>
+  </ol>
+
+  <ol>
+    <li><a href="#61----sni---域名裸奔">6.1    SNI - 域名裸奔</a></li>
+    <li><a href="#62----dns---请求裸奔">6.2    DNS - 请求裸奔</a></li>
+  </ol>
+
+  <ol>
+    <li><a href="#81----private-key-and-public-key">8.1    Private Key And Public Key</a></li>
+    <li><a href="#82----ecdh">8.2    ECDH</a></li>
+    <li><a href="#83----ssh互信">8.3    SSH互信</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/simple_https/">https 浅析</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2023/11/30</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    3 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <p>https</p>
+<h1 id="1------前言">1      前言</h1>
+<p>https作为已经广泛使用的</p>
+<h1 id="2------算法algorithm">2      算法Algorithm</h1>
+<h2 id="21----数字签名算法digital-signature-algorithm-dsa">2.1    数字签名算法Digital Signature Algorithm (DSA)</h2>
+<p>该算法使用由<strong>公钥</strong>和<strong>私钥</strong>组成的密钥对。私钥用于生成消息的数字签名，并且可以通过使用签名者的相应公钥来验证这种签名。数字签名提供信息鉴定（接收者可以验证消息的来源），完整性（接收方可以验证消息自签名以来未被修改）和不可否认性（发送方不能错误地声称它们没有签署消息）</p>
+<p>RSA-SHA-1</p>
+<p>RSA-SHA-256</p>
+<p>RSA-SHA-3</p>
+<p>ECC-DSA</p>
+<p>Ed-DSA</p>
+<p>​          <img src="/assets/https/1-hash.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="1-hash"
+	
+	
+></p>
+<h2 id="22----非对称加密算法-asymmetric-algorithms">2.2    非对称加密算法 Asymmetric algorithms</h2>
+<p>在公钥加密法中使用的特别技术是不对称密钥算法，这个算法中用来加密信息的密钥与解密信息的密钥不是同一个。每个用户都有一对加密密钥 — 一个公钥和一个私钥。私钥是秘密保存，而公钥则会广泛传播。信息是使由接收方到公钥加密，且该信息只能使用对应的私钥解密。</p>
+<p>常用的非对称加密算法有 RSA，非对称加密算法虽然可以解决密钥配送的问题，但是它的加密速度比较慢，并且无法抵御<strong>中间人攻击。</strong></p>
+<p><img src="/assets/https/2-aes.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="2-aes"
+	
+	
+></p>
+<h2 id="23----对称加密算法-symmetric-algorithm">2.3    对称加密算法 Symmetric Algorithm</h2>
+<p><img src="/assets/https/3-sas.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="3-sas"
+	
+	
+></p>
+<h2 id="24----密钥交换算法-diffie-hellman-key-exchange">2.4    密钥交换算法 Diffie-Hellman Key Exchange</h2>
+<p>Diffie-Hellman 密钥交换（D-H）是可让事先彼此不了解的双方通过不稳定的通讯频道联合建立共享保密密钥的加密协议。</p>
+<p><img src="/assets/https/4-alice-bob.jpg"
+	
+	
+	
+	loading="lazy"
+	
+		alt="4-alice-bob"
+	
+	
+></p>
+<h2 id="25----椭圆曲线-ecdh-elliptic-curve-diffie-hellman-key-exchange">2.5    椭圆曲线 ECDH Elliptic Curve Diffie-Hellman Key Exchange</h2>
+<p><a class="link" href="https://www.youtube.com/watch?v=yDXiDOJgxmg"  target="_blank" rel="noopener"
+    >https://www.youtube.com/watch?v=yDXiDOJgxmg</a></p>
+<p><img src="/assets/https/5-fuction.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="5-fuction"
+	
+	
+></p>
+<p><img src="/assets/https/6-function.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="6-function"
+	
+	
+></p>
+<p><img src="/assets/https/7-function.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="7-function"
+	
+	
+></p>
+<p><img src="/assets/https/8-fucntion.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="8-fucntion"
+	
+	
+></p>
+<p><img src="/assets/https/9-fucntion.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="9-fucntion"
+	
+	
+></p>
+<p><img src="/assets/https/10-fucntion.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="10-fucntion"
+	
+	
+></p>
+<p><img src="/assets/https/11-fucntion.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="11-fucntion"
+	
+	
+></p>
+<p><img src="/assets/https/12-fucntion.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="12-fucntion"
+	
+	
+></p>
+<h1 id="3------证书文件">3      证书文件</h1>
+<p>证书是基于道德、公信的基础，对CA/Root颁发机构的信任。</p>
+<h2 id="31----x509">3.1    X.509</h2>
+<p>X.509是密码学里公钥证书的格式标准。</p>
+<p>证书组成结构标准用ASN.1（一种标准的语言）来进行描述。</p>
+<p><img src="/assets/https/13-x509.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="13-x509"
+	
+	
+></p>
+<h2 id="32----private-key-and-public-key">3.2    Private Key And Public Key</h2>
+<p>由工具生成的密钥对 使用RSA算法(非对称加密算法)。</p>
+<p><img src="/assets/https/14-rsa.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="14-rsa"
+	
+	
+></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">-----BEGIN PRIVATE KEY-----
+</span></span><span class="line"><span class="cl">MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDfywgJ6EIKwt81
+</span></span><span class="line"><span class="cl">rI9r08yiq+f4Umw9mNuPS3HMopyV6KJYudqLOsICbJt6GyI6NdFAoitZ6pcUnlEr
+</span></span><span class="line"><span class="cl">Hw54At8rKNZffcCR9Svjka+u6gF1we8JMSE0I/GoImWZXhJ3gy7KJ+rD84rFwbta
+</span></span><span class="line"><span class="cl">mJE6faFbjFeU4+f3sLrf3K71acQueGsrBZKHc7Es6N6MK8GEbw1OMLFubdp2vosA
+</span></span><span class="line"><span class="cl">PUpCk6oUfnH0AvUX3OP/OZV+REv+apS0ktCoCZciua/6612qblSWW/8GWAJqv17b
+</span></span><span class="line"><span class="cl">jd2qenYnkVkhuLXMhpwDPAc8Y494yfyiWdrHJ99POdk7u8NsFaN7z/DGZGeq+NEJ
+</span></span><span class="line"><span class="cl">EZb5L7h1AgMBAAECggEAVH6rwlHW3YlGDVXhsKx/DswpATDdfURBYZDynnim9lKn
+</span></span><span class="line"><span class="cl">OSiywu6kYZXv/eJQwfmfz+9qvsA72qULsGRBaj5rVDhO+C7ajkErGPjghAIGGxfl
+</span></span><span class="line"><span class="cl">0GqkRrNrgje6dHV4M3dsKxd3JBTHyHKk8ke4TYUxbwdF6glCg9pONEd2J2KPl5ta
+</span></span><span class="line"><span class="cl">2OfrrvFwOeix9QyUcT4mmTA2fKkuii8P8BPuARcVYLq5DBYt8WiLWey4vpaCoUc1
+</span></span><span class="line"><span class="cl">ZTcaKhCi/tjwMAsqchWIvrdChQOaphwTbZfPE/oAf9D+ov4p1MM7nDMD08idlOJz
+</span></span><span class="line"><span class="cl">TsSvSWh0zPzrwil7ipLRkX/fj7CCzwb2O4rtzPKC4QKBgQDycXNm0S6iXdQJBZGh
+</span></span><span class="line"><span class="cl">0acTigiSrrRYawI+5gegwBEd25T7Wcb4i9P483DR5IB1EfpHD6hXpf+kha9vrY5Z
+</span></span><span class="line"><span class="cl">NT4h05WvQp/KtV21/C6kI5k4T25mpBsIY2b+iyiOXlkaoxHqhBYDASBHbGjmGUmY
+</span></span><span class="line"><span class="cl">hqI1IiFoRlY61NAC+vfqC0OLPwKBgQDsTptPerT32QEDPJ98//n4CPLnaOeovwjr
+</span></span><span class="line"><span class="cl">BmNeotHFqjg9VvPKztgJOwsy44TCEX/gl/Un92pm/WxsaDplE3ClGgL3p9iqfUc9
+</span></span><span class="line"><span class="cl">q9tpFDxShHFtRsYu/oyduSVEUogVWNKN7QS2G12beLC+1b++mCm5n8VdtsOTY+v/
+</span></span><span class="line"><span class="cl">xb/b3B/TSwKBgQDkNjrE278kA2JmI6HUSr8Uu2gaeu00FXaFso4XmPQDwQBaIUYU
+</span></span><span class="line"><span class="cl">C7s6qhzW1lq82HFYlrqF1rHvMg/T9fD6tA2KVdqeoP49F7/gYEOfKgs+YDax02PG
+</span></span><span class="line"><span class="cl">35rBnEhOyyzg0AM7V55IsbSqxrdvcPo/4uupTDlaKGte8ZfkVk0rN/MajQKBgChh
+</span></span><span class="line"><span class="cl">WlrfjhMYSvsBngNfPpjq9o8itwt38Y8v3UUrr4sGhmu88xYB+JrDMyu0A1iiYua/
+</span></span><span class="line"><span class="cl">MM5ukgkdXyy7NtdU1hfwdPdbAERJ+iWIu4qeQZycM0HIKU+YgfDl1X9yVvzG29wS
+</span></span><span class="line"><span class="cl">145C6OELY7CImCZ6nA6zRae49ny2Q3rGkP2CBRI3AoGAU/6czO8x78qEk8dZQucH
+</span></span><span class="line"><span class="cl">JDiq6OuksffsoRONZE9mEUmreAQr+CW+gWmzfYihq/2ubf7CA7DB3LEsLLlaxUWp
+</span></span><span class="line"><span class="cl">QrBV7y65rTSQv1wDvJPcbXhT2XtG8rOY+IKJSQuLxP8FSjCUCodvkQBt+XUnJi9f
+</span></span><span class="line"><span class="cl">ERco+1Vln3uNjUrrgH+ywFI<span class="o">=</span>
+</span></span><span class="line"><span class="cl">-----END PRIVATE KEY-----
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="33----csr-sertificate-signing-request-also-csr-or-certification-request">3.3    CSR Sertificate Signing Request (also CSR or certification request)</h2>
+<p>The PKCS#10 standard defines a binary format for encoding CSRs for use with X.509. It is expressed in ASN.1. Here is an example of how you can examine its ASN.1 structure using OpenSSL:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">openssl asn1parse -i -in your_request
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>A CSR may be represented as a Base64 encoded PKCS#10; an example of which is given below:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">-----BEGIN CERTIFICATE REQUEST-----
+</span></span><span class="line"><span class="cl">MIICzDCCAbQCAQAwgYYxCzAJBgNVBAYTAkVOMQ0wCwYDVQQIDARub25lMQ0wCwYD
+</span></span><span class="line"><span class="cl">VQQHDARub25lMRIwEAYDVQQKDAlXaWtpcGVkaWExDTALBgNVBAsMBG5vbmUxGDAW
+</span></span><span class="line"><span class="cl">BgNVBAMMDyoud2lraXBlZGlhLm9yZzEcMBoGCSqGSIb3DQEJARYNbm9uZUBub25l
+</span></span><span class="line"><span class="cl">LmNvbTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAMP/U8RlcCD6E8AL
+</span></span><span class="line"><span class="cl">PT8LLUR9ygyygPCaSmIEC8zXGJung3ykElXFRz/Jc/bu0hxCxi2YDz5IjxBBOpB/
+</span></span><span class="line"><span class="cl">kieG83HsSmZZtR+drZIQ6vOsr/ucvpnB9z4XzKuabNGZ5ZiTSQ9L7Mx8FzvUTq5y
+</span></span><span class="line"><span class="cl">/ArIuM+FBeuno/IV8zvwAe/VRa8i0QjFXT9vBBp35aeatdnJ2ds50yKCsHHcjvtr
+</span></span><span class="line"><span class="cl">9/8zPVqqmhl2XFS3Qdqlsprzbgksom67OobJGjaV+fNHNQ0o/rzP//Pl3i7vvaEG
+</span></span><span class="line"><span class="cl">7Ff8tQhEwR9nJUR1T6Z7ln7S6cOr23YozgWVkEJ/dSr6LAopb+cZ88FzW5NszU6i
+</span></span><span class="line"><span class="cl">57HhA7ECAwEAAaAAMA0GCSqGSIb3DQEBBAUAA4IBAQBn8OCVOIx+n0AS6WbEmYDR
+</span></span><span class="line"><span class="cl">SspR9xOCoOwYfamB+2Bpmt82R01zJ/kaqzUtZUjaGvQvAaz5lUwoMdaO0X7I5Xfl
+</span></span><span class="line"><span class="cl">sllMFDaYoGD4Rru4s8gz2qG/QHWA8uPXzJVAj6X0olbIdLTEqTKsnBj4Zr1AJCNy
+</span></span><span class="line"><span class="cl">/YcG4ouLJr140o26MhwBpoCRpPjAgdYMH60BYfnc4/DILxMVqR9xqK1s98d6Ob/+
+</span></span><span class="line"><span class="cl">3wHFK+S7BRWrJQXcM8veAexXuk9lHQ+FgGfD0eSYGz0kyP26Qa2pLTwumjt+nBPl
+</span></span><span class="line"><span class="cl">rfJxaLHwTQ/1988G0H35ED0f9Md5fzoKi5evU1wG5WRxdEUPyt3QUXxdQ69i0C+7
+</span></span><span class="line"><span class="cl">-----END CERTIFICATE REQUEST-----
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="34----crt-signed-certificate">3.4    CRT Signed Certificate</h2>
+<h3 id="341--base64-certificate-example">3.4.1  Base64 Certificate Example:</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">-----BEGIN CERTIFICATE-----
+</span></span><span class="line"><span class="cl">MIIDizCCAnOgAwIBAgIBETANBgkqhkiG9w0BAQsFADByMQswCQYDVQQGEwJDTjES
+</span></span><span class="line"><span class="cl">MBAGA1UECAwJR3Vhbmdkb25nMR0wGwYDVQQKDBRHbG9iYWwgR29vZ2xlIENBIElu
+</span></span><span class="line"><span class="cl">YzEXMBUGA1UECwwOR29vZ2xlIDIwMTkgQ0ExFzAVBgNVBAMMDkdvb2dsZSAyMDE5
+</span></span><span class="line"><span class="cl">IENBMCAXDTIyMDQxNzAxMzEzM1oYDzIxMjIwMzI0MDEzMTMzWjBaMQswCQYDVQQG
+</span></span><span class="line"><span class="cl">EwJDTjESMBAGA1UECAwJQ2hvbmdRaW5nMQ0wCwYDVQQKDARTQUFTMRIwEAYDVQQL
+</span></span><span class="line"><span class="cl">DAl0ZXN0MS5kZXYxFDASBgNVBAMMCyoudGVzdDEuZGV2MIIBIjANBgkqhkiG9w0B
+</span></span><span class="line"><span class="cl">AQEFAAOCAQ8AMIIBCgKCAQEAxZDmJcwta8k70I9N90EPqBMS2+1fgsvtT+KO5GVG
+</span></span><span class="line"><span class="cl">7ON6sbVPE41KSHPakva9kdOmdxzHpElaFY0G2QLPuTaTXtOvTxaOCB3OrR61ZhHA
+</span></span><span class="line"><span class="cl">SPShO5I37QXaaeA1zYmLLJQh90tvZ13eleF8WHfjNNqbKKhc7QcqF4y8sjdS9GR6
+</span></span><span class="line"><span class="cl">0eKif5MEdB5XEEU+S4y4TtFTHj+1/o648FfYBLGL5eBNHG34c20rRyDtMgyOfHWN
+</span></span><span class="line"><span class="cl">R17F4GUVfguwwi1fZiM6xQxqf9YwaQzDTlKSRsVR0ebKOy2zvbP0SSuHFjh3l1Ox
+</span></span><span class="line"><span class="cl">JE09Ey18+EOuT99PyoDJj1tT77tOukl4DDU4RzvX5UkKyQIDAQABo0IwQDAJBgNV
+</span></span><span class="line"><span class="cl">HRMEAjAAMDMGA1UdEQQsMCqCCyoudGVzdDEuZGV2ggl0ZXN0MS5kZXaHBMCoCoCH
+</span></span><span class="line"><span class="cl">BMCoCoWHBMCoCoEwDQYJKoZIhvcNAQELBQADggEBAF3BUTdiHFGZXdidL9b2ugqn
+</span></span><span class="line"><span class="cl">tIfZrenywR2u3Y8BcY/c0+kQxYlUmOqaPuFUpyvwjAzDD8CVh9bLImN/fz+k5v0X
+</span></span><span class="line"><span class="cl">Y6gpkn2jHFRpxshE+EziXeP51fDphtQYovTAB0ip1xG1re4WWQePzgva/ZeYLRm7
+</span></span><span class="line"><span class="cl">NZ/Ja4vf89Ed7RHnufoFkr8BuTxeRnvr0OpD7g2VM1kncqW3+rlSqsxQf9m1ozDX
+</span></span><span class="line"><span class="cl">jG7AiKRQxkh6ej915gzHqvMPHiNohGkEq1wNDaPU1m5tGnhm5sAEyHyPdnxD8X19
+</span></span><span class="line"><span class="cl"><span class="nv">h89bvx6MSWVtGHywB8C0hlVRUKWN1wlRYbMl6EZDZL9e2WchCvDrP0G8uVthoNs</span><span class="o">=</span>
+</span></span><span class="line"><span class="cl">-----END CERTIFICATE-----
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="342--证书内容">3.4.2  证书内容</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">$ openssl x509 -in acs.cdroutertest.com.pem -text
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="/assets/https/15-cert-in.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="15-cert-in"
+	
+	
+></p>
+<h1 id="4------https-http-over-tlsssl">4      HTTPS HTTP over TLS/SSL</h1>
+<p>Hypertext Transfer Protocol Secure</p>
+<h2 id="41----发展">4.1    发展</h2>
+<p><img src="/assets/https/16-https.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="16-https"
+	
+	
+></p>
+<h2 id="42----协议层-osi-level">4.2    协议层 OSI Level</h2>
+<p><img src="/assets/https/17-https-osi.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="17-https-osi"
+	
+	
+></p>
+<h2 id="43----https大概流程">4.3    HTTPS大概流程</h2>
+<p>使用非对称加密算法  à 解密证书的签名</p>
+<p>使用数字签名算法  à 计算签名和解密的对比验证</p>
+<p>使用非对称加密算法 à 加密报文完成[对称加密算法密钥协商]</p>
+<p>使用对称加密算法 à 数据传输</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>NO</th>
+<th>过程</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>使用非对称加密算法</td>
+<td>解密证书的签名</td>
+</tr>
+<tr>
+<td>2</td>
+<td>使用数字签名算法</td>
+<td>计算签名和解密的对比验证</td>
+</tr>
+<tr>
+<td>3</td>
+<td>使用非对称加密算法</td>
+<td>加密报文完成[对称加密算法密钥协商]</td>
+</tr>
+<tr>
+<td>4</td>
+<td>使用对称加密算法</td>
+<td>数据传输</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="44----为什么两种加密算法结合使用">4.4    为什么两种加密算法结合使用</h2>
+<h3 id="441--rsa缺点">4.4.1  RSA缺点</h3>
+<p>密钥尺寸大，加解密速度慢，一般用来加密少量数据。速度太慢，由于RSA 的分组长度太大，为保证安全性，n 至少也要 600 bits以上，使运算代价很高，尤其是速度较慢，较对称密码算法慢几个数量级；且随着大数分解技术的发展，这个长度还在增加，不利于数据格式的标准化不具有向前的安全特性，私钥丢失就不安全了。</p>
+<h3 id="442--dh缺点">4.4.2  DH缺点</h3>
+<p>无法抵御中间人攻击。造成中间人攻击得逞的原因是：DH密钥交换算法不进行认证对方。利用数字签名可以解决中间人攻击的缺陷。具有向前的安全特性(每次生成的密钥不同)</p>
+<h2 id="45----证书签名与验证">4.5    证书签名与验证</h2>
+<h3 id="451--证书链">4.5.1  证书链</h3>
+<p><img src="/assets/https/18-cert-chain.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="18-cert-chain"
+	
+	
+></p>
+<h3 id="452--证书链验证">4.5.2  证书链验证</h3>
+<p><img src="/assets/https/19-cert-chain.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="19-cert-chain"
+	
+	
+></p>
+<h3 id="453--证书详解签名与验证">4.5.3  证书详解签名与验证</h3>
+<p><img src="/assets/https/20-cert-verify.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="20-cert-verify"
+	
+	
+></p>
+<h2 id="46----tls-12-handshake">4.6    TLS 1.2 Handshake</h2>
+<h3 id="461--rsa-handshake">4.6.1  RSA Handshake</h3>
+<p><img src="/assets/https/21-ssl-handshake.jpg"
+	
+	
+	
+	loading="lazy"
+	
+		alt="21-ssl-handshake"
+	
+	
+></p>
+<h3 id="462--dh-handshake">4.6.2  DH Handshake</h3>
+<p><img src="/assets/https/21-ssl-handshake-dh.jpg"
+	
+	
+	
+	loading="lazy"
+	
+		alt="21-ssl-handshake-dh"
+	
+	
+></p>
+<h2 id="47----tls-13-handshake">4.7    TLS 1.3 Handshake</h2>
+<p><img src="/assets/https/22-tls13-handshake.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="22-tls13-handshake"
+	
+	
+></p>
+<h1 id="5------sni-cdn与多域名证书">5      SNI CDN与多域名证书</h1>
+<h2 id="51----背景">5.1    背景</h2>
+<p>随着 IPv4 地址的短缺，为了让多个域名复用同一个 IP 地址，HTTP 服务引入了虚拟主机的概念。即服务器可以根据客户端不同的 Host 请求，将请求分配给不同的域名处理。一个 IP 地址对应多个域名。</p>
+<p>但是在一个被多个域名所共享的 IP 服务（HTTPS）上，由于在握手建立之前服务器无法知道客户端请求的是哪个 Host，此时就出现了无法将请求交给特定的虚拟主机。所以就出现了上面的问题，服务端返回了缺省证书，但是该证书所对应域名并非客户端请求的 Host。</p>
+<p><img src="/assets/https/23-sni.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="23-sni"
+	
+	
+></p>
+<h2 id="52----https-为什么不行">5.2    HTTPS 为什么不行</h2>
+<p>基于Host的虚拟主机，Http没有问题，但是Https不行，为什么呢？因为Https使用SSL/TLS，需要SSL证书才能建立连接，但是同一个nginx上配置了多个SSL证书，使用哪个呢？根据Host选择？这是不可能的，因为Host是Http协议的内容，而这一切发生在发送Http请求前，此时Host还没发送呢</p>
+<h2 id="53----sni-介绍">5.3    SNI 介绍</h2>
+<p>SNI (Server Name Indication) 是用来改善服务器与客户端 SSL (Secure Socket Layer) 和 TLS (Transport Layer Security) 的一个扩展。</p>
+<p>主要解决多证书多域名的情况，随着服务器对虚拟主机的支持，一个服务器上可以为多个域名多个证书提供服务，因此SNI必须得到支持才能满足需求</p>
+<h2 id="54----sni-的工作原理">5.4    SNI 的工作原理</h2>
+<p>它的工作原理是：在客户端与服务器建立 SSL 连接之前，Client Hello 阶段会通过 SNI 扩展，将要访问站点的域名（Hostname）提前告诉服务器，这样服务器会根据这个域名匹配对应的证书返回给客户端，以完成校验过程。</p>
+<p>目前，大多数操作系统和浏览器都已经很好地支持SNI扩展</p>
+<p><img src="/assets/https/24-sni-pcap.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="24-sni-pcap"
+	
+	
+></p>
+<h2 id="55----sni问题">5.5    SNI问题</h2>
+<p>对于多域名多证书的WEB前端，如果TLS Client Hello中没有包含SNI扩展(server_name)</p>
+<p>服务器可能根据不同的厂商有几种可能:</p>
+<p>l 返回默认证书(ali CDN)</p>
+<p>l 返回错误Internal ERROR拒绝握手(akamai)</p>
+<h1 id="6------安全性">6      安全性</h1>
+<h2 id="61----sni---域名裸奔">6.1    SNI - 域名裸奔</h2>
+<p>由于Client Hello报文明文传输server_name主机名，所有都可以监控你访问的域名。</p>
+<p>因此，即便是 HTTPS，访问的域名信息也是裸奔状态。你上班期间访问小电影网站，都留下了痕迹，若接入了公司网络，就自然而然被抓个正着。</p>
+<p>除了域名是裸奔外，其实还有更严重的风险，那就是中间人攻击</p>
+<h2 id="62----dns---请求裸奔">6.2    DNS - 请求裸奔</h2>
+<p>对域名发起请求前，要知道域名的IP地址，就要访问DNS服务器，公司只需网络中指定DNS服务器，截获不加密的 DNS 报文分分钟就了解“摸鱼”的情况</p>
+<p>想要上网不被监控，除了上文中提到的 HTTPS，不要忘了安全的DNS，DoH(DNS over HTTPs, DoH)或DoT(DNS over TLS, DoT)。</p>
+<p>目前比较好的方式还是，自己搭建DoH的DNS server，连上网络后设置DNS服务器为你的server IP，原生Android甚至在设置里提供了“私人DNS”选项。</p>
+<p>当然如果还能跑一个代理服务，前面提到的SNI泄露访问域名的问题也一起解决了。抓包只能发现你一直在访问你自己的server。为了再真一点，甚至可以在你的server上再搭一个web server，放上一些内容，这样就算有人追踪到这个IP，打开看也是一个正常。</p>
+<h1 id="7------中间人攻击-mitm-man-in-the-middle-attack">7      中间人攻击 MITM Man-in-the-middle attack</h1>
+<p><img src="/assets/https/25-mitm-1.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="25-mitm-1"
+	
+	
+></p>
+<p><img src="/assets/https/25-mitm-2.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="25-mitm-2"
+	
+	
+></p>
+<h1 id="8------ssh协议">8      SSH协议</h1>
+<h2 id="81----private-key-and-public-key">8.1    Private Key And Public Key</h2>
+<p>sshd_config</p>
+<p><img src="/assets/https/26-ssh-1.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="26-ssh-1"
+	
+	
+></p>
+<p><img src="/assets/https/26-ssh-2.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="26-ssh-2"
+	
+	
+></p>
+<p><img src="/assets/https/26-ssh-3.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="26-ssh-3"
+	
+	
+></p>
+<h2 id="82----ecdh">8.2    ECDH</h2>
+<p><img src="/assets/https/27-ecdh.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="27-ecdh"
+	
+	
+></p>
+<h2 id="83----ssh互信">8.3    SSH互信</h2>
+<p>认证的时候直接读取.ssh/authorized_keys进行匹配。</p>
+<p>复制本机.ssh/id_rsa.pub  到对方  .ssh/authorized_keys</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC1sN62Y3NeUK9+8vfD+6BqecohPG1XG81Y4SDzGFDWhV7Nb9on2oTzj8Wg3ZHAiCSQUyVddd7P6zlKGvWaxgQodQqYWTNgvFXlvwjmdxevv3A42euRSxBNW7pORvhbWcKIvBxCTCrK/eOybpqXHadAZDKaGR8orHpcF+z72kgXrMEregS4Zjvef/kvbIQGu2dkRhcV3v1ZnvxQaZQwilLH2pHSgEIGOVGlcpjXLktzKFwORVHVVWy5KqKlBNK/n7Z9QRDDf+Zb3F6XpM0+SuSCgkCKWMlhfdu93kYT9KyI08XlY9UCj9SG96ZHt1n/khS9Tdc802raT8M1TKPzlbmB root@rhel
+</span></span></code></pre></td></tr></table>
+</div>
+</div>
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    <div class="disqus-container">
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "hugo-theme-stack" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+<script>
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (typeof DISQUS == 'object') {
+            DISQUS.reset({
+                reload: true
+            });
+        }
+    })
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2020 - 
+        
+        2023 Cyberzz.dev Blog
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.21.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

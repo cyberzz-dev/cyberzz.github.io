@@ -8,6 +8,619 @@
         <language>en</language>
         <copyright>Cyberzz.dev Blog</copyright>
         <lastBuildDate>Thu, 30 Nov 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://cyberzz.dev/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>https 浅析</title>
+        <link>https://cyberzz.dev/p/simple_https/</link>
+        <pubDate>Thu, 30 Nov 2023 00:00:00 +0000</pubDate>
+        
+        <guid>https://cyberzz.dev/p/simple_https/</guid>
+        <description>&lt;p&gt;https&lt;/p&gt;
+&lt;h1 id=&#34;1------前言&#34;&gt;1      前言&lt;/h1&gt;
+&lt;p&gt;https作为已经广泛使用的&lt;/p&gt;
+&lt;h1 id=&#34;2------算法algorithm&#34;&gt;2      算法Algorithm&lt;/h1&gt;
+&lt;h2 id=&#34;21----数字签名算法digital-signature-algorithm-dsa&#34;&gt;2.1    数字签名算法Digital Signature Algorithm (DSA)&lt;/h2&gt;
+&lt;p&gt;该算法使用由&lt;strong&gt;公钥&lt;/strong&gt;和&lt;strong&gt;私钥&lt;/strong&gt;组成的密钥对。私钥用于生成消息的数字签名，并且可以通过使用签名者的相应公钥来验证这种签名。数字签名提供信息鉴定（接收者可以验证消息的来源），完整性（接收方可以验证消息自签名以来未被修改）和不可否认性（发送方不能错误地声称它们没有签署消息）&lt;/p&gt;
+&lt;p&gt;RSA-SHA-1&lt;/p&gt;
+&lt;p&gt;RSA-SHA-256&lt;/p&gt;
+&lt;p&gt;RSA-SHA-3&lt;/p&gt;
+&lt;p&gt;ECC-DSA&lt;/p&gt;
+&lt;p&gt;Ed-DSA&lt;/p&gt;
+&lt;p&gt;​          &lt;img src=&#34;https://cyberzz.dev/assets/https/1-hash.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;1-hash&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;22----非对称加密算法-asymmetric-algorithms&#34;&gt;2.2    非对称加密算法 Asymmetric algorithms&lt;/h2&gt;
+&lt;p&gt;在公钥加密法中使用的特别技术是不对称密钥算法，这个算法中用来加密信息的密钥与解密信息的密钥不是同一个。每个用户都有一对加密密钥 — 一个公钥和一个私钥。私钥是秘密保存，而公钥则会广泛传播。信息是使由接收方到公钥加密，且该信息只能使用对应的私钥解密。&lt;/p&gt;
+&lt;p&gt;常用的非对称加密算法有 RSA，非对称加密算法虽然可以解决密钥配送的问题，但是它的加密速度比较慢，并且无法抵御&lt;strong&gt;中间人攻击。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cyberzz.dev/assets/https/2-aes.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;2-aes&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;23----对称加密算法-symmetric-algorithm&#34;&gt;2.3    对称加密算法 Symmetric Algorithm&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://cyberzz.dev/assets/https/3-sas.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;3-sas&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;24----密钥交换算法-diffie-hellman-key-exchange&#34;&gt;2.4    密钥交换算法 Diffie-Hellman Key Exchange&lt;/h2&gt;
+&lt;p&gt;Diffie-Hellman 密钥交换（D-H）是可让事先彼此不了解的双方通过不稳定的通讯频道联合建立共享保密密钥的加密协议。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cyberzz.dev/assets/https/4-alice-bob.jpg&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;4-alice-bob&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;25----椭圆曲线-ecdh-elliptic-curve-diffie-hellman-key-exchange&#34;&gt;2.5    椭圆曲线 ECDH Elliptic Curve Diffie-Hellman Key Exchange&lt;/h2&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.youtube.com/watch?v=yDXiDOJgxmg&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://www.youtube.com/watch?v=yDXiDOJgxmg&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cyberzz.dev/assets/https/5-fuction.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;5-fuction&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cyberzz.dev/assets/https/6-function.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;6-function&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cyberzz.dev/assets/https/7-function.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;7-function&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cyberzz.dev/assets/https/8-fucntion.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;8-fucntion&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cyberzz.dev/assets/https/9-fucntion.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;9-fucntion&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cyberzz.dev/assets/https/10-fucntion.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;10-fucntion&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cyberzz.dev/assets/https/11-fucntion.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;11-fucntion&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cyberzz.dev/assets/https/12-fucntion.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;12-fucntion&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h1 id=&#34;3------证书文件&#34;&gt;3      证书文件&lt;/h1&gt;
+&lt;p&gt;证书是基于道德、公信的基础，对CA/Root颁发机构的信任。&lt;/p&gt;
+&lt;h2 id=&#34;31----x509&#34;&gt;3.1    X.509&lt;/h2&gt;
+&lt;p&gt;X.509是密码学里公钥证书的格式标准。&lt;/p&gt;
+&lt;p&gt;证书组成结构标准用ASN.1（一种标准的语言）来进行描述。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cyberzz.dev/assets/https/13-x509.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;13-x509&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;32----private-key-and-public-key&#34;&gt;3.2    Private Key And Public Key&lt;/h2&gt;
+&lt;p&gt;由工具生成的密钥对 使用RSA算法(非对称加密算法)。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cyberzz.dev/assets/https/14-rsa.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;14-rsa&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;-----BEGIN PRIVATE KEY-----
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDfywgJ6EIKwt81
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;rI9r08yiq+f4Umw9mNuPS3HMopyV6KJYudqLOsICbJt6GyI6NdFAoitZ6pcUnlEr
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Hw54At8rKNZffcCR9Svjka+u6gF1we8JMSE0I/GoImWZXhJ3gy7KJ+rD84rFwbta
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;mJE6faFbjFeU4+f3sLrf3K71acQueGsrBZKHc7Es6N6MK8GEbw1OMLFubdp2vosA
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;PUpCk6oUfnH0AvUX3OP/OZV+REv+apS0ktCoCZciua/6612qblSWW/8GWAJqv17b
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;jd2qenYnkVkhuLXMhpwDPAc8Y494yfyiWdrHJ99POdk7u8NsFaN7z/DGZGeq+NEJ
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;EZb5L7h1AgMBAAECggEAVH6rwlHW3YlGDVXhsKx/DswpATDdfURBYZDynnim9lKn
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;OSiywu6kYZXv/eJQwfmfz+9qvsA72qULsGRBaj5rVDhO+C7ajkErGPjghAIGGxfl
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;0GqkRrNrgje6dHV4M3dsKxd3JBTHyHKk8ke4TYUxbwdF6glCg9pONEd2J2KPl5ta
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;2OfrrvFwOeix9QyUcT4mmTA2fKkuii8P8BPuARcVYLq5DBYt8WiLWey4vpaCoUc1
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ZTcaKhCi/tjwMAsqchWIvrdChQOaphwTbZfPE/oAf9D+ov4p1MM7nDMD08idlOJz
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;TsSvSWh0zPzrwil7ipLRkX/fj7CCzwb2O4rtzPKC4QKBgQDycXNm0S6iXdQJBZGh
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;0acTigiSrrRYawI+5gegwBEd25T7Wcb4i9P483DR5IB1EfpHD6hXpf+kha9vrY5Z
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;NT4h05WvQp/KtV21/C6kI5k4T25mpBsIY2b+iyiOXlkaoxHqhBYDASBHbGjmGUmY
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;hqI1IiFoRlY61NAC+vfqC0OLPwKBgQDsTptPerT32QEDPJ98//n4CPLnaOeovwjr
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;BmNeotHFqjg9VvPKztgJOwsy44TCEX/gl/Un92pm/WxsaDplE3ClGgL3p9iqfUc9
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;q9tpFDxShHFtRsYu/oyduSVEUogVWNKN7QS2G12beLC+1b++mCm5n8VdtsOTY+v/
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;xb/b3B/TSwKBgQDkNjrE278kA2JmI6HUSr8Uu2gaeu00FXaFso4XmPQDwQBaIUYU
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;C7s6qhzW1lq82HFYlrqF1rHvMg/T9fD6tA2KVdqeoP49F7/gYEOfKgs+YDax02PG
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;35rBnEhOyyzg0AM7V55IsbSqxrdvcPo/4uupTDlaKGte8ZfkVk0rN/MajQKBgChh
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;WlrfjhMYSvsBngNfPpjq9o8itwt38Y8v3UUrr4sGhmu88xYB+JrDMyu0A1iiYua/
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;MM5ukgkdXyy7NtdU1hfwdPdbAERJ+iWIu4qeQZycM0HIKU+YgfDl1X9yVvzG29wS
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;145C6OELY7CImCZ6nA6zRae49ny2Q3rGkP2CBRI3AoGAU/6czO8x78qEk8dZQucH
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;JDiq6OuksffsoRONZE9mEUmreAQr+CW+gWmzfYihq/2ubf7CA7DB3LEsLLlaxUWp
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;QrBV7y65rTSQv1wDvJPcbXhT2XtG8rOY+IKJSQuLxP8FSjCUCodvkQBt+XUnJi9f
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ERco+1Vln3uNjUrrgH+ywFI&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;-----END PRIVATE KEY-----
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;33----csr-sertificate-signing-request-also-csr-or-certification-request&#34;&gt;3.3    CSR Sertificate Signing Request (also CSR or certification request)&lt;/h2&gt;
+&lt;p&gt;The PKCS#10 standard defines a binary format for encoding CSRs for use with X.509. It is expressed in ASN.1. Here is an example of how you can examine its ASN.1 structure using OpenSSL:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;openssl asn1parse -i -in your_request
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;A CSR may be represented as a Base64 encoded PKCS#10; an example of which is given below:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;-----BEGIN CERTIFICATE REQUEST-----
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;MIICzDCCAbQCAQAwgYYxCzAJBgNVBAYTAkVOMQ0wCwYDVQQIDARub25lMQ0wCwYD
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;VQQHDARub25lMRIwEAYDVQQKDAlXaWtpcGVkaWExDTALBgNVBAsMBG5vbmUxGDAW
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;BgNVBAMMDyoud2lraXBlZGlhLm9yZzEcMBoGCSqGSIb3DQEJARYNbm9uZUBub25l
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;LmNvbTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAMP/U8RlcCD6E8AL
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;PT8LLUR9ygyygPCaSmIEC8zXGJung3ykElXFRz/Jc/bu0hxCxi2YDz5IjxBBOpB/
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;kieG83HsSmZZtR+drZIQ6vOsr/ucvpnB9z4XzKuabNGZ5ZiTSQ9L7Mx8FzvUTq5y
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/ArIuM+FBeuno/IV8zvwAe/VRa8i0QjFXT9vBBp35aeatdnJ2ds50yKCsHHcjvtr
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;9/8zPVqqmhl2XFS3Qdqlsprzbgksom67OobJGjaV+fNHNQ0o/rzP//Pl3i7vvaEG
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;7Ff8tQhEwR9nJUR1T6Z7ln7S6cOr23YozgWVkEJ/dSr6LAopb+cZ88FzW5NszU6i
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;57HhA7ECAwEAAaAAMA0GCSqGSIb3DQEBBAUAA4IBAQBn8OCVOIx+n0AS6WbEmYDR
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;SspR9xOCoOwYfamB+2Bpmt82R01zJ/kaqzUtZUjaGvQvAaz5lUwoMdaO0X7I5Xfl
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sllMFDaYoGD4Rru4s8gz2qG/QHWA8uPXzJVAj6X0olbIdLTEqTKsnBj4Zr1AJCNy
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/YcG4ouLJr140o26MhwBpoCRpPjAgdYMH60BYfnc4/DILxMVqR9xqK1s98d6Ob/+
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;3wHFK+S7BRWrJQXcM8veAexXuk9lHQ+FgGfD0eSYGz0kyP26Qa2pLTwumjt+nBPl
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;rfJxaLHwTQ/1988G0H35ED0f9Md5fzoKi5evU1wG5WRxdEUPyt3QUXxdQ69i0C+7
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;-----END CERTIFICATE REQUEST-----
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;34----crt-signed-certificate&#34;&gt;3.4    CRT Signed Certificate&lt;/h2&gt;
+&lt;h3 id=&#34;341--base64-certificate-example&#34;&gt;3.4.1  Base64 Certificate Example:&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;-----BEGIN CERTIFICATE-----
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;MIIDizCCAnOgAwIBAgIBETANBgkqhkiG9w0BAQsFADByMQswCQYDVQQGEwJDTjES
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;MBAGA1UECAwJR3Vhbmdkb25nMR0wGwYDVQQKDBRHbG9iYWwgR29vZ2xlIENBIElu
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;YzEXMBUGA1UECwwOR29vZ2xlIDIwMTkgQ0ExFzAVBgNVBAMMDkdvb2dsZSAyMDE5
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;IENBMCAXDTIyMDQxNzAxMzEzM1oYDzIxMjIwMzI0MDEzMTMzWjBaMQswCQYDVQQG
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;EwJDTjESMBAGA1UECAwJQ2hvbmdRaW5nMQ0wCwYDVQQKDARTQUFTMRIwEAYDVQQL
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;DAl0ZXN0MS5kZXYxFDASBgNVBAMMCyoudGVzdDEuZGV2MIIBIjANBgkqhkiG9w0B
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;AQEFAAOCAQ8AMIIBCgKCAQEAxZDmJcwta8k70I9N90EPqBMS2+1fgsvtT+KO5GVG
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;7ON6sbVPE41KSHPakva9kdOmdxzHpElaFY0G2QLPuTaTXtOvTxaOCB3OrR61ZhHA
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;SPShO5I37QXaaeA1zYmLLJQh90tvZ13eleF8WHfjNNqbKKhc7QcqF4y8sjdS9GR6
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;0eKif5MEdB5XEEU+S4y4TtFTHj+1/o648FfYBLGL5eBNHG34c20rRyDtMgyOfHWN
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;R17F4GUVfguwwi1fZiM6xQxqf9YwaQzDTlKSRsVR0ebKOy2zvbP0SSuHFjh3l1Ox
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;JE09Ey18+EOuT99PyoDJj1tT77tOukl4DDU4RzvX5UkKyQIDAQABo0IwQDAJBgNV
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;HRMEAjAAMDMGA1UdEQQsMCqCCyoudGVzdDEuZGV2ggl0ZXN0MS5kZXaHBMCoCoCH
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;BMCoCoWHBMCoCoEwDQYJKoZIhvcNAQELBQADggEBAF3BUTdiHFGZXdidL9b2ugqn
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;tIfZrenywR2u3Y8BcY/c0+kQxYlUmOqaPuFUpyvwjAzDD8CVh9bLImN/fz+k5v0X
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Y6gpkn2jHFRpxshE+EziXeP51fDphtQYovTAB0ip1xG1re4WWQePzgva/ZeYLRm7
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;NZ/Ja4vf89Ed7RHnufoFkr8BuTxeRnvr0OpD7g2VM1kncqW3+rlSqsxQf9m1ozDX
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;jG7AiKRQxkh6ej915gzHqvMPHiNohGkEq1wNDaPU1m5tGnhm5sAEyHyPdnxD8X19
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nv&#34;&gt;h89bvx6MSWVtGHywB8C0hlVRUKWN1wlRYbMl6EZDZL9e2WchCvDrP0G8uVthoNs&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;-----END CERTIFICATE-----
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;342--证书内容&#34;&gt;3.4.2  证书内容&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;$ openssl x509 -in acs.cdroutertest.com.pem -text
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://cyberzz.dev/assets/https/15-cert-in.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;15-cert-in&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h1 id=&#34;4------https-http-over-tlsssl&#34;&gt;4      HTTPS HTTP over TLS/SSL&lt;/h1&gt;
+&lt;p&gt;Hypertext Transfer Protocol Secure&lt;/p&gt;
+&lt;h2 id=&#34;41----发展&#34;&gt;4.1    发展&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://cyberzz.dev/assets/https/16-https.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;16-https&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;42----协议层-osi-level&#34;&gt;4.2    协议层 OSI Level&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://cyberzz.dev/assets/https/17-https-osi.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;17-https-osi&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;43----https大概流程&#34;&gt;4.3    HTTPS大概流程&lt;/h2&gt;
+&lt;p&gt;使用非对称加密算法  à 解密证书的签名&lt;/p&gt;
+&lt;p&gt;使用数字签名算法  à 计算签名和解密的对比验证&lt;/p&gt;
+&lt;p&gt;使用非对称加密算法 à 加密报文完成[对称加密算法密钥协商]&lt;/p&gt;
+&lt;p&gt;使用对称加密算法 à 数据传输&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;NO&lt;/th&gt;
+&lt;th&gt;过程&lt;/th&gt;
+&lt;th&gt;作用&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;使用非对称加密算法&lt;/td&gt;
+&lt;td&gt;解密证书的签名&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;td&gt;使用数字签名算法&lt;/td&gt;
+&lt;td&gt;计算签名和解密的对比验证&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;3&lt;/td&gt;
+&lt;td&gt;使用非对称加密算法&lt;/td&gt;
+&lt;td&gt;加密报文完成[对称加密算法密钥协商]&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;4&lt;/td&gt;
+&lt;td&gt;使用对称加密算法&lt;/td&gt;
+&lt;td&gt;数据传输&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id=&#34;44----为什么两种加密算法结合使用&#34;&gt;4.4    为什么两种加密算法结合使用&lt;/h2&gt;
+&lt;h3 id=&#34;441--rsa缺点&#34;&gt;4.4.1  RSA缺点&lt;/h3&gt;
+&lt;p&gt;密钥尺寸大，加解密速度慢，一般用来加密少量数据。速度太慢，由于RSA 的分组长度太大，为保证安全性，n 至少也要 600 bits以上，使运算代价很高，尤其是速度较慢，较对称密码算法慢几个数量级；且随着大数分解技术的发展，这个长度还在增加，不利于数据格式的标准化不具有向前的安全特性，私钥丢失就不安全了。&lt;/p&gt;
+&lt;h3 id=&#34;442--dh缺点&#34;&gt;4.4.2  DH缺点&lt;/h3&gt;
+&lt;p&gt;无法抵御中间人攻击。造成中间人攻击得逞的原因是：DH密钥交换算法不进行认证对方。利用数字签名可以解决中间人攻击的缺陷。具有向前的安全特性(每次生成的密钥不同)&lt;/p&gt;
+&lt;h2 id=&#34;45----证书签名与验证&#34;&gt;4.5    证书签名与验证&lt;/h2&gt;
+&lt;h3 id=&#34;451--证书链&#34;&gt;4.5.1  证书链&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;https://cyberzz.dev/assets/https/18-cert-chain.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;18-cert-chain&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;452--证书链验证&#34;&gt;4.5.2  证书链验证&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;https://cyberzz.dev/assets/https/19-cert-chain.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;19-cert-chain&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;453--证书详解签名与验证&#34;&gt;4.5.3  证书详解签名与验证&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;https://cyberzz.dev/assets/https/20-cert-verify.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;20-cert-verify&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;46----tls-12-handshake&#34;&gt;4.6    TLS 1.2 Handshake&lt;/h2&gt;
+&lt;h3 id=&#34;461--rsa-handshake&#34;&gt;4.6.1  RSA Handshake&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;https://cyberzz.dev/assets/https/21-ssl-handshake.jpg&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;21-ssl-handshake&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;462--dh-handshake&#34;&gt;4.6.2  DH Handshake&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;https://cyberzz.dev/assets/https/21-ssl-handshake-dh.jpg&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;21-ssl-handshake-dh&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;47----tls-13-handshake&#34;&gt;4.7    TLS 1.3 Handshake&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://cyberzz.dev/assets/https/22-tls13-handshake.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;22-tls13-handshake&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h1 id=&#34;5------sni-cdn与多域名证书&#34;&gt;5      SNI CDN与多域名证书&lt;/h1&gt;
+&lt;h2 id=&#34;51----背景&#34;&gt;5.1    背景&lt;/h2&gt;
+&lt;p&gt;随着 IPv4 地址的短缺，为了让多个域名复用同一个 IP 地址，HTTP 服务引入了虚拟主机的概念。即服务器可以根据客户端不同的 Host 请求，将请求分配给不同的域名处理。一个 IP 地址对应多个域名。&lt;/p&gt;
+&lt;p&gt;但是在一个被多个域名所共享的 IP 服务（HTTPS）上，由于在握手建立之前服务器无法知道客户端请求的是哪个 Host，此时就出现了无法将请求交给特定的虚拟主机。所以就出现了上面的问题，服务端返回了缺省证书，但是该证书所对应域名并非客户端请求的 Host。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cyberzz.dev/assets/https/23-sni.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;23-sni&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;52----https-为什么不行&#34;&gt;5.2    HTTPS 为什么不行&lt;/h2&gt;
+&lt;p&gt;基于Host的虚拟主机，Http没有问题，但是Https不行，为什么呢？因为Https使用SSL/TLS，需要SSL证书才能建立连接，但是同一个nginx上配置了多个SSL证书，使用哪个呢？根据Host选择？这是不可能的，因为Host是Http协议的内容，而这一切发生在发送Http请求前，此时Host还没发送呢&lt;/p&gt;
+&lt;h2 id=&#34;53----sni-介绍&#34;&gt;5.3    SNI 介绍&lt;/h2&gt;
+&lt;p&gt;SNI (Server Name Indication) 是用来改善服务器与客户端 SSL (Secure Socket Layer) 和 TLS (Transport Layer Security) 的一个扩展。&lt;/p&gt;
+&lt;p&gt;主要解决多证书多域名的情况，随着服务器对虚拟主机的支持，一个服务器上可以为多个域名多个证书提供服务，因此SNI必须得到支持才能满足需求&lt;/p&gt;
+&lt;h2 id=&#34;54----sni-的工作原理&#34;&gt;5.4    SNI 的工作原理&lt;/h2&gt;
+&lt;p&gt;它的工作原理是：在客户端与服务器建立 SSL 连接之前，Client Hello 阶段会通过 SNI 扩展，将要访问站点的域名（Hostname）提前告诉服务器，这样服务器会根据这个域名匹配对应的证书返回给客户端，以完成校验过程。&lt;/p&gt;
+&lt;p&gt;目前，大多数操作系统和浏览器都已经很好地支持SNI扩展&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cyberzz.dev/assets/https/24-sni-pcap.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;24-sni-pcap&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;55----sni问题&#34;&gt;5.5    SNI问题&lt;/h2&gt;
+&lt;p&gt;对于多域名多证书的WEB前端，如果TLS Client Hello中没有包含SNI扩展(server_name)&lt;/p&gt;
+&lt;p&gt;服务器可能根据不同的厂商有几种可能:&lt;/p&gt;
+&lt;p&gt;l 返回默认证书(ali CDN)&lt;/p&gt;
+&lt;p&gt;l 返回错误Internal ERROR拒绝握手(akamai)&lt;/p&gt;
+&lt;h1 id=&#34;6------安全性&#34;&gt;6      安全性&lt;/h1&gt;
+&lt;h2 id=&#34;61----sni---域名裸奔&#34;&gt;6.1    SNI - 域名裸奔&lt;/h2&gt;
+&lt;p&gt;由于Client Hello报文明文传输server_name主机名，所有都可以监控你访问的域名。&lt;/p&gt;
+&lt;p&gt;因此，即便是 HTTPS，访问的域名信息也是裸奔状态。你上班期间访问小电影网站，都留下了痕迹，若接入了公司网络，就自然而然被抓个正着。&lt;/p&gt;
+&lt;p&gt;除了域名是裸奔外，其实还有更严重的风险，那就是中间人攻击&lt;/p&gt;
+&lt;h2 id=&#34;62----dns---请求裸奔&#34;&gt;6.2    DNS - 请求裸奔&lt;/h2&gt;
+&lt;p&gt;对域名发起请求前，要知道域名的IP地址，就要访问DNS服务器，公司只需网络中指定DNS服务器，截获不加密的 DNS 报文分分钟就了解“摸鱼”的情况&lt;/p&gt;
+&lt;p&gt;想要上网不被监控，除了上文中提到的 HTTPS，不要忘了安全的DNS，DoH(DNS over HTTPs, DoH)或DoT(DNS over TLS, DoT)。&lt;/p&gt;
+&lt;p&gt;目前比较好的方式还是，自己搭建DoH的DNS server，连上网络后设置DNS服务器为你的server IP，原生Android甚至在设置里提供了“私人DNS”选项。&lt;/p&gt;
+&lt;p&gt;当然如果还能跑一个代理服务，前面提到的SNI泄露访问域名的问题也一起解决了。抓包只能发现你一直在访问你自己的server。为了再真一点，甚至可以在你的server上再搭一个web server，放上一些内容，这样就算有人追踪到这个IP，打开看也是一个正常。&lt;/p&gt;
+&lt;h1 id=&#34;7------中间人攻击-mitm-man-in-the-middle-attack&#34;&gt;7      中间人攻击 MITM Man-in-the-middle attack&lt;/h1&gt;
+&lt;p&gt;&lt;img src=&#34;https://cyberzz.dev/assets/https/25-mitm-1.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;25-mitm-1&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cyberzz.dev/assets/https/25-mitm-2.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;25-mitm-2&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h1 id=&#34;8------ssh协议&#34;&gt;8      SSH协议&lt;/h1&gt;
+&lt;h2 id=&#34;81----private-key-and-public-key&#34;&gt;8.1    Private Key And Public Key&lt;/h2&gt;
+&lt;p&gt;sshd_config&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cyberzz.dev/assets/https/26-ssh-1.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;26-ssh-1&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cyberzz.dev/assets/https/26-ssh-2.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;26-ssh-2&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cyberzz.dev/assets/https/26-ssh-3.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;26-ssh-3&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;82----ecdh&#34;&gt;8.2    ECDH&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://cyberzz.dev/assets/https/27-ecdh.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;27-ecdh&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;83----ssh互信&#34;&gt;8.3    SSH互信&lt;/h2&gt;
+&lt;p&gt;认证的时候直接读取.ssh/authorized_keys进行匹配。&lt;/p&gt;
+&lt;p&gt;复制本机.ssh/id_rsa.pub  到对方  .ssh/authorized_keys&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC1sN62Y3NeUK9+8vfD+6BqecohPG1XG81Y4SDzGFDWhV7Nb9on2oTzj8Wg3ZHAiCSQUyVddd7P6zlKGvWaxgQodQqYWTNgvFXlvwjmdxevv3A42euRSxBNW7pORvhbWcKIvBxCTCrK/eOybpqXHadAZDKaGR8orHpcF+z72kgXrMEregS4Zjvef/kvbIQGu2dkRhcV3v1ZnvxQaZQwilLH2pHSgEIGOVGlcpjXLktzKFwORVHVVWy5KqKlBNK/n7Z9QRDDf+Zb3F6XpM0+SuSCgkCKWMlhfdu93kYT9KyI08XlY9UCj9SG96ZHt1n/khS9Tdc802raT8M1TKPzlbmB root@rhel
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description>
+        </item>
+        <item>
         <title>一些思考</title>
         <link>https://cyberzz.dev/p/some_thinkings/</link>
         <pubDate>Thu, 30 Nov 2023 00:00:00 +0000</pubDate>
@@ -16,7 +629,7 @@
         <description>&lt;p&gt;长时间的保持写作能力，真的是是一件令人敬佩的事情。&lt;/p&gt;
 &lt;p&gt;随着年龄的增长越发发现，几乎很少有时间专注某项事情。&lt;/p&gt;
 &lt;p&gt;工作、生活、家庭占据了大部分时间，几乎很少时间剩下。&lt;/p&gt;
-&lt;p&gt;​                                                  2023-11-30&lt;/p&gt;
+&lt;p&gt;​                                                       2023-11-30&lt;/p&gt;
 </description>
         </item>
         <item>
