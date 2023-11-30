@@ -7,7 +7,19 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
         <copyright>Cyberzz.dev Blog</copyright>
-        <lastBuildDate>Wed, 29 Nov 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://cyberzz.dev/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 30 Nov 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://cyberzz.dev/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>一些思考</title>
+        <link>https://cyberzz.dev/p/some_thinkings/</link>
+        <pubDate>Thu, 30 Nov 2023 00:00:00 +0000</pubDate>
+        
+        <guid>https://cyberzz.dev/p/some_thinkings/</guid>
+        <description>&lt;p&gt;长时间的保持写作能力，真的是是一件令人敬佩的事情。&lt;/p&gt;
+&lt;p&gt;随着年龄的增长越发发现，几乎很少有时间专注某项事情。&lt;/p&gt;
+&lt;p&gt;工作、生活、家庭占据了大部分时间，几乎很少时间剩下。&lt;/p&gt;
+&lt;p&gt;​                                                  2023-11-30&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>kafka acls的一些设置</title>
         <link>https://cyberzz.dev/p/kafka_acls/</link>
         <pubDate>Wed, 29 Nov 2023 00:00:00 +0000</pubDate>
