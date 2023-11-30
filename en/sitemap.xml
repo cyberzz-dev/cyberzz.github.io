@@ -11,11 +11,6 @@
                 />
     <xhtml:link
                 rel="alternate"
-                hreflang="ar"
-                href="https://cyberzz.dev/ar/"
-                />
-    <xhtml:link
-                rel="alternate"
                 hreflang="en"
                 href="https://cyberzz.dev/"
                 />
@@ -75,11 +70,6 @@
                 />
     <xhtml:link
                 rel="alternate"
-                hreflang="ar"
-                href="https://cyberzz.dev/ar/categories/"
-                />
-    <xhtml:link
-                rel="alternate"
                 hreflang="en"
                 href="https://cyberzz.dev/categories/"
                 />
@@ -91,11 +81,6 @@
                 rel="alternate"
                 hreflang="zh-cn"
                 href="https://cyberzz.dev/zh-cn/tags/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="ar"
-                href="https://cyberzz.dev/ar/tags/"
                 />
     <xhtml:link
                 rel="alternate"

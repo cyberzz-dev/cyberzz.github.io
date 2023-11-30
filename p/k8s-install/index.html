@@ -245,8 +245,6 @@ if (!doNotTrack) {
                         
                             <option value="https://cyberzz.dev/zh-cn/" >中文</option>
                         
-                            <option value="https://cyberzz.dev/ar/" >عربي</option>
-                        
                     </select>
                 </li>
             
@@ -297,167 +295,189 @@ if (!doNotTrack) {
         
         <div class="widget--toc">
             <nav id="TableOfContents">
-  <ol>
-    <li><a href="#service-monitor-无法发现">service monitor 无法发现</a></li>
-    <li><a href="#11-系统配置">1.1 系统配置</a>
-      <ol>
-        <li><a href="#修改hosts">修改hosts</a></li>
-        <li><a href="#关闭防火墙">关闭防火墙</a></li>
-        <li><a href="#关闭-selinux">关闭 selinux</a></li>
-        <li><a href="#必须安装iptables">必须安装iptables</a></li>
-        <li><a href="#创建etcmodules-loaddcontainerdconf配置文件">创建/etc/modules-load.d/containerd.conf配置文件:</a></li>
-      </ol>
+  <ul>
+    <li><a href="#1-准备">1. 准备</a>
+      <ul>
+        <li><a href="#service-monitor-无法发现">service monitor 无法发现</a></li>
+        <li><a href="#11-系统配置">1.1 系统配置</a>
+          <ul>
+            <li><a href="#修改hosts">修改hosts</a></li>
+            <li><a href="#关闭防火墙">关闭防火墙</a></li>
+            <li><a href="#关闭-selinux">关闭 selinux</a></li>
+            <li><a href="#必须安装iptables">必须安装iptables</a></li>
+            <li><a href="#创建etcmodules-loaddcontainerdconf配置文件">创建/etc/modules-load.d/containerd.conf配置文件:</a></li>
+          </ul>
+        </li>
+        <li><a href="#12-加载内核modules-ipvs">1.2 加载内核modules ipvs</a></li>
+        <li><a href="#13-docker">1.3 docker</a>
+          <ul>
+            <li><a href="#安装docker">安装Docker</a></li>
+            <li><a href="#安装cri-dockerd">安装cri-dockerd</a></li>
+            <li><a href="#添加阿里云yum软件源">添加阿里云YUM软件源</a></li>
+            <li><a href="#安装kubeadmkubelet和kubectl">安装kubeadm，kubelet和kubectl</a></li>
+          </ul>
+        </li>
+        <li><a href="#14--containerdrunc">1.4  Containerd、runc</a></li>
+      </ul>
     </li>
-    <li><a href="#12-加载内核modules-ipvs">1.2 加载内核modules ipvs</a></li>
-    <li><a href="#13-docker">1.3 docker</a>
-      <ol>
-        <li><a href="#安装docker">安装Docker</a></li>
-        <li><a href="#安装cri-dockerd">安装cri-dockerd</a></li>
-        <li><a href="#添加阿里云yum软件源">添加阿里云YUM软件源</a></li>
-        <li><a href="#安装kubeadmkubelet和kubectl">安装kubeadm，kubelet和kubectl</a></li>
-      </ol>
+    <li><a href="#2-使用kubeadm部署kubernetes">2. 使用kubeadm部署Kubernetes</a>
+      <ul>
+        <li><a href="#21-安装kubeadm和kubelet">2.1 安装kubeadm和kubelet</a></li>
+        <li><a href="#22-kubeadm-init初始化">2.2 kubeadm init初始化</a></li>
+        <li><a href="#22-kubeadm-reset">2.2 kubeadm reset</a></li>
+        <li><a href="#23-安装helm-3">2.3 安装helm 3</a></li>
+        <li><a href="#24-部署network组件calico">2.4 部署Network组件Calico</a>
+          <ul>
+            <li>
+              <ul>
+                <li><a href="#install-calico">Install Calico</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="#24-部署network组件kube-ovn">2.4 部署Network组件kube-ovn</a></li>
+        <li><a href="#25-验证k8s-dns是否可用">2.5 验证k8s DNS是否可用</a></li>
+        <li><a href="#26-添加node节点">2.6 添加Node节点</a></li>
+      </ul>
     </li>
-    <li><a href="#14--containerdrunc">1.4  Containerd、runc</a></li>
-  </ol>
-
-  <ol>
-    <li><a href="#21-安装kubeadm和kubelet">2.1 安装kubeadm和kubelet</a></li>
-    <li><a href="#22-kubeadm-init初始化">2.2 kubeadm init初始化</a></li>
-    <li><a href="#22-kubeadm-reset">2.2 kubeadm reset</a></li>
-    <li><a href="#23-安装helm-3">2.3 安装helm 3</a></li>
-    <li><a href="#24-部署network组件calico">2.4 部署Network组件Calico</a>
-      <ol>
+    <li><a href="#multus-networking">Multus Networking</a></li>
+    <li><a href="#redis-operrator">redis operrator</a></li>
+    <li><a href="#3-ipvs支持">3. ipvs支持</a></li>
+    <li><a href="#4-kubernetes常用组件部署">4. Kubernetes常用组件部署</a>
+      <ul>
+        <li><a href="#remotewrite使能">remoteWrite使能</a></li>
+        <li><a href="#41-安装prometheus-grafana">4.1 安装Prometheus Grafana</a></li>
+        <li><a href="#42-安装ingress-nginx">4.2 安装ingress-nginx</a></li>
+        <li><a href="#43-生成域名证书">4.3 生成域名证书</a></li>
+        <li><a href="#44-导入证书">4.4 导入证书</a></li>
+        <li><a href="#45-ingress转发prometheus-grafana">4.5 ingress转发prometheus grafana</a></li>
+        <li><a href="#46-ingress转发nginx测试服务">4.6 ingress转发nginx测试服务</a></li>
+      </ul>
+    </li>
+    <li><a href="#5-安装bashbord">5. 安装bashbord</a>
+      <ul>
+        <li><a href="#修改为nodeport">修改为nodePort</a></li>
+        <li><a href="#导入证书">导入证书</a></li>
+        <li><a href="#创建token">创建token</a></li>
+        <li><a href="#dashboard-rbacyaml">dashboard-rbac.yaml</a></li>
+        <li><a href="#ingress-bashbordyaml">ingress-bashbord.yaml</a></li>
+      </ul>
+    </li>
+    <li><a href="#6-静态pv">6 静态PV</a></li>
+    <li><a href="#7-动态pv创建">7 动态pv创建</a>
+      <ul>
+        <li><a href="#nfs-client-provisioneryaml">nfs-client-provisioner.yaml</a></li>
+      </ul>
+    </li>
+    <li><a href="#8-minio安装">8 Minio安装</a>
+      <ul>
+        <li><a href="#安装minio--operator">安装minio  operator</a></li>
+        <li><a href="#控制界面">控制界面</a></li>
+        <li><a href="#创建minio集群">创建minio集群</a></li>
+        <li><a href="#生成3级域名证书">生成3级域名证书</a></li>
+        <li><a href="#导入证书-1">导入证书</a></li>
+        <li><a href="#ingress-minioyaml">ingress-minio.yaml</a></li>
+        <li><a href="#配置域名解析">配置域名解析</a></li>
+        <li><a href="#413-request-entity-too-large">413 Request Entity Too Large</a>
+          <ul>
+            <li><a href="#方案1-修改自己的ingress">方案1 修改自己的ingress</a></li>
+            <li><a href="#方案2-全局-ingress-configmap">方案2 全局 ingress configmap</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#6-kube_proxy-service和iptables的关系">6 kube_proxy service和iptables的关系</a>
+      <ul>
         <li>
-          <ol>
-            <li><a href="#install-calico">Install Calico</a></li>
-          </ol>
+          <ul>
+            <li><a href="#iptables-模式">iptables 模式</a></li>
+            <li><a href="#ipvs-模式">ipvs 模式</a></li>
+            <li><a href="#kube-proxy-ipvs和iptables的异同">kube-proxy ipvs和iptables的异同</a></li>
+          </ul>
         </li>
-      </ol>
+      </ul>
     </li>
-    <li><a href="#24-部署network组件kube-ovn">2.4 部署Network组件kube-ovn</a></li>
-    <li><a href="#25-验证k8s-dns是否可用">2.5 验证k8s DNS是否可用</a></li>
-    <li><a href="#26-添加node节点">2.6 添加Node节点</a></li>
-  </ol>
-
-  <ol>
-    <li><a href="#remotewrite使能">remoteWrite使能</a></li>
-    <li><a href="#41-安装prometheus-grafana">4.1 安装Prometheus Grafana</a></li>
-    <li><a href="#42-安装ingress-nginx">4.2 安装ingress-nginx</a></li>
-    <li><a href="#43-生成域名证书">4.3 生成域名证书</a></li>
-    <li><a href="#44-导入证书">4.4 导入证书</a></li>
-    <li><a href="#45-ingress转发prometheus-grafana">4.5 ingress转发prometheus grafana</a></li>
-    <li><a href="#46-ingress转发nginx测试服务">4.6 ingress转发nginx测试服务</a></li>
-  </ol>
-
-  <ol>
-    <li><a href="#修改为nodeport">修改为nodePort</a></li>
-    <li><a href="#导入证书">导入证书</a></li>
-    <li><a href="#创建token">创建token</a></li>
-    <li><a href="#dashboard-rbacyaml">dashboard-rbac.yaml</a></li>
-    <li><a href="#ingress-bashbordyaml">ingress-bashbord.yaml</a></li>
-  </ol>
-
-  <ol>
-    <li><a href="#nfs-client-provisioneryaml">nfs-client-provisioner.yaml</a></li>
-  </ol>
-
-  <ol>
-    <li><a href="#安装minio--operator">安装minio  operator</a></li>
-    <li><a href="#控制界面">控制界面</a></li>
-    <li><a href="#创建minio集群">创建minio集群</a></li>
-    <li><a href="#生成3级域名证书">生成3级域名证书</a></li>
-    <li><a href="#导入证书-1">导入证书</a></li>
-    <li><a href="#ingress-minioyaml">ingress-minio.yaml</a></li>
-    <li><a href="#配置域名解析">配置域名解析</a></li>
-    <li><a href="#413-request-entity-too-large">413 Request Entity Too Large</a>
-      <ol>
-        <li><a href="#方案1-修改自己的ingress">方案1 修改自己的ingress</a></li>
-        <li><a href="#方案2-全局-ingress-configmap">方案2 全局 ingress configmap</a></li>
-      </ol>
+    <li><a href="#service">Service</a></li>
+    <li><a href="#7-calico-bgp-vrf">7 Calico BGP VRF</a>
+      <ul>
+        <li><a href="#spine--leaf--rr">spine  Leaf  RR</a></li>
+        <li><a href="#关于-cni-选型">关于 CNI 选型</a></li>
+        <li><a href="#为什么选择-calico">为什么选择 Calico</a></li>
+        <li><a href="#关于-metallb">关于 MetalLB</a></li>
+      </ul>
     </li>
-  </ol>
-
-  <ol>
-    <li>
-      <ol>
-        <li><a href="#iptables-模式">iptables 模式</a></li>
-        <li><a href="#ipvs-模式">ipvs 模式</a></li>
-        <li><a href="#kube-proxy-ipvs和iptables的异同">kube-proxy ipvs和iptables的异同</a></li>
-      </ol>
-    </li>
-  </ol>
-
-  <ol>
-    <li><a href="#spine--leaf--rr">spine  Leaf  RR</a></li>
-    <li><a href="#关于-cni-选型">关于 CNI 选型</a></li>
-    <li><a href="#为什么选择-calico">为什么选择 Calico</a></li>
-    <li><a href="#关于-metallb">关于 MetalLB</a></li>
-  </ol>
-
-  <ol>
-    <li><a href="#installation">INSTALLATION</a>
-      <ol>
-        <li><a href="#preparation">Preparation</a></li>
-        <li><a href="#installation-by-manifest">Installation By Manifest</a></li>
-        <li><a href="#installation-with-kustomize">Installation With Kustomize</a></li>
-        <li><a href="#installation-with-helm">Installation With Helm</a></li>
-        <li><a href="#using-the-metallb-operator">Using The MetalLB Operator</a></li>
-        <li><a href="#frr-daemons-logging-level">FRR Daemons Logging Level</a></li>
-        <li><a href="#upgrade">Upgrade</a></li>
-        <li><a href="#setting-the-loadbalancer-class">Setting The LoadBalancer Class</a></li>
-      </ol>
-    </li>
-    <li><a href="#configuration">CONFIGURATION</a>
-      <ol>
-        <li><a href="#defining-the-ips-to-assign-to-the-load-balancer-services">Defining The IPs To Assign To The Load Balancer Services</a></li>
-        <li><a href="#announce-the-service-ips">Announce The Service IPs</a></li>
-        <li><a href="#layer-2-configuration">Layer 2 Configuration</a></li>
-        <li><a href="#bgp-configuration">BGP Configuration</a>
-          <ol>
-            <li><a href="#enabling-bfd-support-for-bgp-sessions">Enabling BFD support for BGP sessions</a></li>
-          </ol>
+    <li><a href="#8-metallblayer2-bgp-vrf">8 Metallb(Layer2 BGP) VRF</a>
+      <ul>
+        <li><a href="#installation">INSTALLATION</a>
+          <ul>
+            <li><a href="#preparation">Preparation</a></li>
+            <li><a href="#installation-by-manifest">Installation By Manifest</a></li>
+            <li><a href="#installation-with-kustomize">Installation With Kustomize</a></li>
+            <li><a href="#installation-with-helm">Installation With Helm</a></li>
+            <li><a href="#using-the-metallb-operator">Using The MetalLB Operator</a></li>
+            <li><a href="#frr-daemons-logging-level">FRR Daemons Logging Level</a></li>
+            <li><a href="#upgrade">Upgrade</a></li>
+            <li><a href="#setting-the-loadbalancer-class">Setting The LoadBalancer Class</a></li>
+          </ul>
         </li>
-        <li><a href="#configuration-validation">Configuration Validation</a></li>
-      </ol>
+        <li><a href="#configuration">CONFIGURATION</a>
+          <ul>
+            <li><a href="#defining-the-ips-to-assign-to-the-load-balancer-services">Defining The IPs To Assign To The Load Balancer Services</a></li>
+            <li><a href="#announce-the-service-ips">Announce The Service IPs</a></li>
+            <li><a href="#layer-2-configuration">Layer 2 Configuration</a></li>
+            <li><a href="#bgp-configuration">BGP Configuration</a>
+              <ul>
+                <li><a href="#enabling-bfd-support-for-bgp-sessions">Enabling BFD support for BGP sessions</a></li>
+              </ul>
+            </li>
+            <li><a href="#configuration-validation">Configuration Validation</a></li>
+          </ul>
+        </li>
+      </ul>
     </li>
-  </ol>
-
-  <ol>
-    <li><a href="#查看所有-pod-列表---n-后跟-namespace-查看指定的命名空间"><strong>查看所有</strong> <strong>pod</strong> <strong>列表,  -n</strong> <strong>后跟</strong> <strong>namespace,</strong> <strong>查看指定的命名空间</strong></a></li>
-    <li><a href="#查看-rc-和-service-列表--o-wide-查看详细信息"><strong>查看</strong> <strong>RC</strong> <strong>和</strong> <strong>service</strong> <strong>列表，</strong> <strong>-o wide</strong> <strong>查看详细信息</strong></a></li>
-    <li><a href="#显示-node-的详细信息"><strong>显示</strong> <strong>Node</strong> <strong>的详细信息</strong></a></li>
-    <li><a href="#显示-pod-的详细信息-特别是查看-pod-无法创建的时候的日志"><strong>显示</strong> <strong>Pod</strong> <strong>的详细信息,</strong> <strong>特别是查看</strong> <strong>pod</strong> <strong>无法创建的时候的日志</strong></a></li>
-    <li><a href="#根据-yaml-创建资源-apply-可以重复执行create-不行"><strong>根据</strong> <strong>yaml</strong> <strong>创建资源, apply</strong> <strong>可以重复执行，create</strong> <strong>不行</strong></a></li>
-    <li><a href="#基于-podyaml-定义的名称删除指定资源"><strong>基于 pod.yaml</strong> <strong>定义的名称删除指定资源</strong></a></li>
-    <li><a href="#删除所有包含某个-label-的pod-和-service"><strong>删除所有包含某个</strong> <strong>label</strong> <strong>的pod</strong> <strong>和</strong> <strong>service</strong></a></li>
-    <li><a href="#删除默认命名空间下的所有-pod"><strong>删除默认命名空间下的所有</strong> <strong>Pod</strong></a></li>
-    <li><a href="#执行-pod-命令"><strong>执行</strong> <strong>pod</strong> <strong>命令</strong></a></li>
-    <li><a href="#通过bash获得-pod-中某个容器httpscloudtencentcomproducttkefrom10680的tty相当于登录容器"><strong>通过bash获得</strong> <strong>pod</strong> <strong>中某个</strong><a href="https://cloud.tencent.com/product/tke?from=10680"><strong>容器</strong></a><strong>的TTY，相当于登录容器</strong></a></li>
-    <li><a href="#查看容器的日志"><strong>查看容器的日志</strong></a></li>
-    <li><a href="#查看节点-labels"><strong>查看节点</strong> <strong>labels</strong></a></li>
-    <li><a href="#重启-pod"><strong>重启</strong> <strong>pod</strong></a></li>
-    <li><a href="#创建命令"><strong>创建命令</strong></a></li>
-    <li><a href="#查看和查找资源"><strong>查看和查找资源</strong></a></li>
-    <li><a href="#更新资源"><strong>更新资源</strong></a></li>
-    <li><a href="#部分更新资源"><strong>部分更新资源</strong></a></li>
-    <li><a href="#删除资源"><strong>删除资源</strong></a></li>
-    <li><a href="#pod常用操作"><strong>Pod常用操作</strong></a></li>
-    <li><a href="#节点操作"><strong>节点操作</strong></a></li>
-  </ol>
-
-  <ol>
-    <li>
-      <ol>
-        <li><a href="#ingress-nginx-serviceyaml">ingress-nginx-service.yaml</a></li>
-        <li><a href="#ingress-grafana-prometheus-serviceyaml">ingress-grafana-prometheus-service.yaml</a></li>
-        <li><a href="#nginx-deploymentyaml">nginx-deployment.yaml</a></li>
-        <li><a href="#nginx-serviceyaml">nginx-service.yaml</a></li>
-        <li><a href="#nginx-minioyaml">nginx-minio.yaml</a></li>
-        <li><a href="#redis---rbacyaml">redis - rbac.yaml</a></li>
-        <li><a href="#ingress-nginx-deploy-daemonsetyaml">ingress-nginx-deploy-daemonset.yaml</a></li>
-      </ol>
+    <li><a href="#6-cri-o容器查看">6. cri-o容器查看</a></li>
+    <li><a href="#7-k8s删除名称空间报错">7. <strong>k8s删除名称空间报错</strong></a></li>
+    <li><a href="#8-k8s常用命令">8. k8s常用命令</a>
+      <ul>
+        <li><a href="#查看所有-pod-列表---n-后跟-namespace-查看指定的命名空间"><strong>查看所有</strong> <strong>pod</strong> <strong>列表,  -n</strong> <strong>后跟</strong> <strong>namespace,</strong> <strong>查看指定的命名空间</strong></a></li>
+        <li><a href="#查看-rc-和-service-列表--o-wide-查看详细信息"><strong>查看</strong> <strong>RC</strong> <strong>和</strong> <strong>service</strong> <strong>列表，</strong> <strong>-o wide</strong> <strong>查看详细信息</strong></a></li>
+        <li><a href="#显示-node-的详细信息"><strong>显示</strong> <strong>Node</strong> <strong>的详细信息</strong></a></li>
+        <li><a href="#显示-pod-的详细信息-特别是查看-pod-无法创建的时候的日志"><strong>显示</strong> <strong>Pod</strong> <strong>的详细信息,</strong> <strong>特别是查看</strong> <strong>pod</strong> <strong>无法创建的时候的日志</strong></a></li>
+        <li><a href="#根据-yaml-创建资源-apply-可以重复执行create-不行"><strong>根据</strong> <strong>yaml</strong> <strong>创建资源, apply</strong> <strong>可以重复执行，create</strong> <strong>不行</strong></a></li>
+        <li><a href="#基于-podyaml-定义的名称删除指定资源"><strong>基于 pod.yaml</strong> <strong>定义的名称删除指定资源</strong></a></li>
+        <li><a href="#删除所有包含某个-label-的pod-和-service"><strong>删除所有包含某个</strong> <strong>label</strong> <strong>的pod</strong> <strong>和</strong> <strong>service</strong></a></li>
+        <li><a href="#删除默认命名空间下的所有-pod"><strong>删除默认命名空间下的所有</strong> <strong>Pod</strong></a></li>
+        <li><a href="#执行-pod-命令"><strong>执行</strong> <strong>pod</strong> <strong>命令</strong></a></li>
+        <li><a href="#通过bash获得-pod-中某个容器httpscloudtencentcomproducttkefrom10680的tty相当于登录容器"><strong>通过bash获得</strong> <strong>pod</strong> <strong>中某个</strong><a href="https://cloud.tencent.com/product/tke?from=10680"><strong>容器</strong></a><strong>的TTY，相当于登录容器</strong></a></li>
+        <li><a href="#查看容器的日志"><strong>查看容器的日志</strong></a></li>
+        <li><a href="#查看节点-labels"><strong>查看节点</strong> <strong>labels</strong></a></li>
+        <li><a href="#重启-pod"><strong>重启</strong> <strong>pod</strong></a></li>
+        <li><a href="#创建命令"><strong>创建命令</strong></a></li>
+        <li><a href="#查看和查找资源"><strong>查看和查找资源</strong></a></li>
+        <li><a href="#更新资源"><strong>更新资源</strong></a></li>
+        <li><a href="#部分更新资源"><strong>部分更新资源</strong></a></li>
+        <li><a href="#删除资源"><strong>删除资源</strong></a></li>
+        <li><a href="#pod常用操作"><strong>Pod常用操作</strong></a></li>
+        <li><a href="#节点操作"><strong>节点操作</strong></a></li>
+      </ul>
     </li>
-  </ol>
+    <li><a href="#ndots-search域">ndots search域</a></li>
+    <li><a href="#附件">附件：</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#ingress-nginx-serviceyaml">ingress-nginx-service.yaml</a></li>
+            <li><a href="#ingress-grafana-prometheus-serviceyaml">ingress-grafana-prometheus-service.yaml</a></li>
+            <li><a href="#nginx-deploymentyaml">nginx-deployment.yaml</a></li>
+            <li><a href="#nginx-serviceyaml">nginx-service.yaml</a></li>
+            <li><a href="#nginx-minioyaml">nginx-minio.yaml</a></li>
+            <li><a href="#redis---rbacyaml">redis - rbac.yaml</a></li>
+            <li><a href="#ingress-nginx-deploy-daemonsetyaml">ingress-nginx-deploy-daemonset.yaml</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
 </nav>
         </div>
     </section>
